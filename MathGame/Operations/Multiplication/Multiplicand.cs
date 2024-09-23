@@ -1,19 +1,19 @@
 namespace MathGame.Operations.Multiplication;
 
-public record Multiplier
+public record Multiplicand
 {
     private const int MinValue = 1;
     private const int MaxValue = 10;
 
-    private Multiplier(int value)
+    private Multiplicand(int value)
     {
         Value = value;
     }
 
     public int Value { get; }
 
-    public static Multiplier Next(Random random)
+    public static Multiplicand Next(Random random)
     {
-        return new Multiplier(random.Next(MinValue, MaxValue));
+        return new Multiplicand(random.Next(MinValue, MaxValue));
     }
 }
