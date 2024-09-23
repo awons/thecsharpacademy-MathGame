@@ -9,7 +9,8 @@ public class GamePlayTests
     private Augend _augend;
     private Addend _addend;
 
-    public GamePlayTests()
+    [SetUp]
+    public void SetUp()
     {
         var random = new Random();
         _augend = Augend.Next(random);
