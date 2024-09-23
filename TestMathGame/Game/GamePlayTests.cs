@@ -6,15 +6,22 @@ namespace TestMathGame.Game;
 
 public class GamePlayTests
 {
+    private Augend _augend;
+    private Addend _addend;
+
+    public GamePlayTests()
+    {
+        var random = new Random();
+        _augend = Augend.Next(random);
+        _addend = Addend.Next(random);
+    }
+
     [Test]
     public void WillDetectWinner()
     {
-        var random = new Random();
-        var augend = Augend.Next(random);
-        var addend = Addend.Next(random);
-        var gamePlay = new GamePlay(new AdditionOperation(augend, addend));
+        var gamePlay = new GamePlay(new AdditionOperation(_augend, _addend));
 
-        var expectedResult = augend.Value + addend.Value;
+        var expectedResult = _augend.Value + _addend.Value;
         var gamePlayResult = gamePlay.Answer(expectedResult);
 
         gamePlayResult.Won().Should().BeTrue();
@@ -23,12 +30,9 @@ public class GamePlayTests
     [Test]
     public void WillDetectLoser()
     {
-        var random = new Random();
-        var augend = Augend.Next(random);
-        var addend = Addend.Next(random);
-        var gamePlay = new GamePlay(new AdditionOperation(augend, addend));
+        var gamePlay = new GamePlay(new AdditionOperation(_augend, _addend));
 
-        var expectedResult = augend.Value + addend.Value;
+        var expectedResult = _augend.Value + _addend.Value;
         var gamePlayResult = gamePlay.Answer(expectedResult + 1);
 
         gamePlayResult.Won().Should().BeFalse();
