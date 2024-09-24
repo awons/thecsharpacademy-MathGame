@@ -7,7 +7,7 @@ namespace TestMathGame.Game;
 
 public class GamePlayTests
 {
-    private IOperation _operation;
+    private AdditionOperation _operation;
 
     [SetUp]
     public void SetUp()
