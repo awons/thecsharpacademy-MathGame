@@ -1,29 +1,26 @@
 using FluentAssertions;
 using MathGame.Game;
+using MathGame.Operations;
 using MathGame.Operations.Addition;
 
 namespace TestMathGame.Game;
 
 public class GamePlayTests
 {
-    private Augend _augend;
-    private Addend _addend;
+    private IOperation _operation;
 
     [SetUp]
     public void SetUp()
     {
         var random = new Random();
-        _augend = Augend.Next(random);
-        _addend = Addend.Next(random);
+        _operation = new AdditionOperation(Augend.Next(random), Addend.Next(random));
     }
 
     [Test]
     public void WillDetectWinner()
     {
-        var gamePlay = new GamePlay(new AdditionOperation(_augend, _addend));
-
-        var expectedResult = _augend.Value + _addend.Value;
-        var gamePlayResult = gamePlay.Answer(expectedResult);
+        var gamePlay = new GamePlay(_operation);
+        var gamePlayResult = gamePlay.Answer(_operation.ExpectedResult());
 
         gamePlayResult.Won().Should().BeTrue();
     }
@@ -31,10 +28,8 @@ public class GamePlayTests
     [Test]
     public void WillDetectLoser()
     {
-        var gamePlay = new GamePlay(new AdditionOperation(_augend, _addend));
-
-        var expectedResult = _augend.Value + _addend.Value;
-        var gamePlayResult = gamePlay.Answer(expectedResult + 1);
+        var gamePlay = new GamePlay(_operation);
+        var gamePlayResult = gamePlay.Answer(_operation.ExpectedResult() + 1);
 
         gamePlayResult.Won().Should().BeFalse();
     }

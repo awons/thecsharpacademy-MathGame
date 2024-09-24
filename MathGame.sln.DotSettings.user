@@ -6,5 +6,10 @@
     &lt;TestId&gt;NUnit3x::0BB38A1C-733C-4294-B61C-AA854BE94A19::net8.0::TestMathGame.Game.GamePlayTests&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d787d111_002D2f87_002D4472_002D9c90_002D15bfb6c1ecb5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GamePlayTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::0BB38A1C-733C-4294-B61C-AA854BE94A19::net8.0::TestMathGame.Game.GamePlayTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	
 	</wpf:ResourceDictionary>
