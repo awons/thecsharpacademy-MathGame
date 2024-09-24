@@ -1,7 +1,7 @@
 using FluentAssertions;
 using MathGame.Operations.Addition;
 
-namespace TestMathGame.Operations;
+namespace TestMathGame.Operations.Addition;
 
 public class AdditionTests
 {
