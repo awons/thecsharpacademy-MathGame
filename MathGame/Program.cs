@@ -6,7 +6,6 @@ using MathGame.Operations.Multiplication;
 using MathGame.Operations.Subtraction;
 using MathGame.UI;
 
-MenuChoiceEnum menuChoice;
 var menu = new Menu();
 var random = new Random();
 var operationFactory = new OperationFactory(new AdditionRandomizer(random), new SubtractionRandomizer(random),
@@ -17,7 +16,7 @@ var answerReader = new AnswerReader();
 do
 {
     MenuRenderer.Render(menu);
-    menuChoice = new MenuChoiceReader().GetChoice();
+    var menuChoice = new MenuChoiceReader().GetChoice();
     if (menuChoice == MenuChoiceEnum.Quit)
     {
         break;
