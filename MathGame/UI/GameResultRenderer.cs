@@ -4,7 +4,7 @@ namespace MathGame.UI;
 
 public class GameResultRenderer
 {
-    public void Render(GameResult gameResult)
+    public static void Render(GameResult gameResult)
     {
         Console.Clear();
         if (gameResult.Won())

@@ -5,7 +5,7 @@ namespace MathGame.UI;
 
 public class GamePlayRenderer
 {
-    public void Render(GamePlay gamePlay)
+    public static void Render(GamePlay gamePlay)
     {
         Console.Clear();
         Console.WriteLine("What is the result of the following operation?");

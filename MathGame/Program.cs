@@ -13,15 +13,10 @@ var operationFactory = new OperationFactory(new AdditionRandomizer(random), new 
     new MultiplicationRandomizer(random), new DivisionRandomizer(random));
 var gameHistory = new GameHistory();
 var answerReader = new AnswerReader();
-var gamePlayRenderer = new GamePlayRenderer();
-var gameResultRenderer = new GameResultRenderer();
-var historyRenderer = new HistoryRenderer();
-GameResult gameResult;
 
 do
 {
-    Console.Clear();
-    Console.Write(menu.ToString());
+    MenuRenderer.Render(menu);
     menuChoice = new MenuChoiceReader().GetChoice();
     if (menuChoice == MenuChoiceEnum.Quit)
     {
@@ -30,16 +25,16 @@ do
 
     if (menuChoice == MenuChoiceEnum.History)
     {
-        historyRenderer.Render(gameHistory);
+        HistoryRenderer.Render(gameHistory);
         continue;
     }
 
     Console.Clear();
     var gamePlay = new GamePlay(operationFactory.Create(MenuChoiceToOperationMapper.Map(menuChoice)));
-    gamePlayRenderer.Render(gamePlay);
-    gameResult = gamePlay.GiveAnswer(answerReader.GetAnswer());
+    GamePlayRenderer.Render(gamePlay);
+    var gameResult = gamePlay.GiveAnswer(answerReader.GetAnswer());
     gameHistory.Add(gameResult);
-    gameResultRenderer.Render(gameResult);
+    GameResultRenderer.Render(gameResult);
 } while (true);
 
 Console.Clear();

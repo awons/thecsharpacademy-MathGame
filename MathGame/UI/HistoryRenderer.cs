@@ -4,7 +4,7 @@ namespace MathGame.UI;
 
 public class HistoryRenderer
 {
-    public void Render(GameHistory history)
+    public static void Render(GameHistory history)
     {
         Console.Clear();
         Console.WriteLine("Your previous games:");
