@@ -18,6 +18,7 @@ public record Menu
 {ChoiceDivision}: Division
 {ChoiceHistory}: History
 {ChoiceQuit}: Quit
+------------------------------------------------
 ";
     }
 }

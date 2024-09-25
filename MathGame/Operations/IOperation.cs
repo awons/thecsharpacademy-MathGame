@@ -8,4 +8,9 @@ public interface IOperation
     {
         return answer == ExpectedResult();
     }
+
+    public OperationsEnum GetOperationType();
+
+    public int GetLeftOperand();
+    public int GetRightOperand();
 }

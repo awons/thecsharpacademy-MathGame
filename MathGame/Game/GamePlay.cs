@@ -2,10 +2,10 @@ using MathGame.Operations;
 
 namespace MathGame.Game;
 
-public class GamePlay(IOperation operation)
+public record GamePlay(IOperation Operation)
 {
-    public GameResult Answer(int answer)
+    public GameResult GiveAnswer(int answer)
     {
-        return new GameResult(operation, answer);
+        return new GameResult(Operation, answer);
     }
 }

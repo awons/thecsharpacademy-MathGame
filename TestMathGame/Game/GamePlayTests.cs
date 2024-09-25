@@ -20,7 +20,7 @@ public class GamePlayTests
     public void WillDetectWinner()
     {
         var gamePlay = new GamePlay(_operation);
-        var gamePlayResult = gamePlay.Answer(_operation.ExpectedResult());
+        var gamePlayResult = gamePlay.GiveAnswer(_operation.ExpectedResult());
 
         gamePlayResult.Won().Should().BeTrue();
     }
@@ -29,7 +29,7 @@ public class GamePlayTests
     public void WillDetectLoser()
     {
         var gamePlay = new GamePlay(_operation);
-        var gamePlayResult = gamePlay.Answer(_operation.ExpectedResult() + 1);
+        var gamePlayResult = gamePlay.GiveAnswer(_operation.ExpectedResult() + 1);
 
         gamePlayResult.Won().Should().BeFalse();
     }

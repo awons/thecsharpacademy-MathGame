@@ -1,6 +1,6 @@
 namespace MathGame.UI;
 
-public class ConsoleMenuChoice : IMenuChoice
+public class MenuChoiceReader
 {
     public MenuChoiceEnum GetChoice()
     {
@@ -10,11 +10,9 @@ public class ConsoleMenuChoice : IMenuChoice
         do
         {
             choice = Console.ReadKey().KeyChar;
-            Console.CursorLeft = currentPositionLeft;
-            Console.CursorTop = currentPositionTop;
+            Console.SetCursorPosition(currentPositionLeft, currentPositionTop);
             Console.Write(' ');
-            Console.CursorLeft = currentPositionLeft;
-            Console.CursorTop = currentPositionTop;
+            Console.SetCursorPosition(currentPositionLeft, currentPositionTop);
         } while (!Enum.IsDefined(typeof(MenuChoiceEnum), (int)choice));
 
         return (MenuChoiceEnum)choice;

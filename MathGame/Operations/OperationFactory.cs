@@ -1,0 +1,25 @@
+using MathGame.Operations.Addition;
+using MathGame.Operations.Division;
+using MathGame.Operations.Multiplication;
+using MathGame.Operations.Subtraction;
+
+namespace MathGame.Operations;
+
+public class OperationFactory(
+    AdditionRandomizer additionRandomizer,
+    SubtractionRandomizer subtractionRandomizer,
+    MultiplicationRandomizer multiplicationRandomizer,
+    DivisionRandomizer divisionRandomizer)
+{
+    public IOperation Create(OperationsEnum operationType)
+    {
+        return operationType switch
+        {
+            OperationsEnum.Addition => additionRandomizer.Next(),
+            OperationsEnum.Subtraction => subtractionRandomizer.Next(),
+            OperationsEnum.Multiplication => multiplicationRandomizer.Next(),
+            OperationsEnum.Division => divisionRandomizer.Next(),
+            _ => throw new ArgumentOutOfRangeException(nameof(operationType), operationType, null)
+        };
+    }
+}
