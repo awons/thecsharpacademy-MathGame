@@ -43,5 +43,3 @@ do
 } while (true);
 
 Console.Clear();
-Console.WriteLine("Thank you for playing the game! Press any key to exit.");
-Console.ReadKey();

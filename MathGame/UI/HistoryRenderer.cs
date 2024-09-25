@@ -13,7 +13,7 @@ public class HistoryRenderer
             var operationString = OperationToStringMapper.Map(gameResult.Operation);
             var resultString = gameResult.Won() ? "Won" : "Lost";
             Console.WriteLine(
-                $"{gameResult.Operation.GetLeftOperand()} {operationString} {gameResult.Operation.GetRightOperand()} = {resultString}");
+                $"{gameResult.Operation.GetLeftOperand()} {operationString} {gameResult.Operation.GetRightOperand()} = {gameResult.Answer} [correct answer: {gameResult.Operation.ExpectedResult()}] {resultString}");
         }
 
         Console.WriteLine("Press any key to continue...");
