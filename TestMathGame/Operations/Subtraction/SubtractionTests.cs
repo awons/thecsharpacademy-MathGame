@@ -9,8 +9,8 @@ public class SubtractionTests
     public void WillReturnCorrectResult()
     {
         var random = new Random();
-        var minuend = Minuend.Next(random, 1, 100);
-        var subtrahend = Subtrahend.Next(random, 1, 100);
+        var minuend = Minuend.Next(random, 100);
+        var subtrahend = Subtrahend.Next(random, 100);
         var operation = new SubtractionOperation(minuend, subtrahend);
 
         operation.ExpectedResult().Should().Be(minuend.Value - subtrahend.Value);

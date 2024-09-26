@@ -9,8 +9,8 @@ public record Addend
 
     public int Value { get; }
 
-    public static Addend Next(Random random, int minValue, int maxValue)
+    public static Addend Next(Random random, int maxValue)
     {
-        return new Addend(random.Next(minValue, maxValue));
+        return new Addend(random.Next(1, maxValue));
     }
 }

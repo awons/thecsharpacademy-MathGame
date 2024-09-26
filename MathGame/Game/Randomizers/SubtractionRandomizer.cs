@@ -6,8 +6,8 @@ public class SubtractionRandomizer(Random random)
 {
     public SubtractionOperation Next(DifficultyLevelEnum difficultyLevel)
     {
-        return new SubtractionOperation(Minuend.Next(random, 1, GetMaxValue(difficultyLevel)),
-            Subtrahend.Next(random, 1, GetMaxValue(difficultyLevel)));
+        return new SubtractionOperation(Minuend.Next(random, GetMaxValue(difficultyLevel)),
+            Subtrahend.Next(random, GetMaxValue(difficultyLevel)));
     }
 
     private static int GetMaxValue(DifficultyLevelEnum difficultyLevel)

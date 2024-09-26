@@ -9,8 +9,8 @@ public record Minuend
 
     public int Value { get; }
 
-    public static Minuend Next(Random random, int minValue, int maxValue)
+    public static Minuend Next(Random random, int maxValue)
     {
-        return new Minuend(random.Next(minValue, maxValue));
+        return new Minuend(random.Next(1, maxValue));
     }
 }

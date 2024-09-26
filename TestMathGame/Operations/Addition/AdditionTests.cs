@@ -9,8 +9,8 @@ public class AdditionTests
     public void WillReturnCorrectResult()
     {
         var random = new Random();
-        var augend = Augend.Next(random, 1, 100);
-        var addend = Addend.Next(random, 1, 100);
+        var augend = Augend.Next(random, 100);
+        var addend = Addend.Next(random, 100);
         var operation = new AdditionOperation(augend, addend);
 
         operation.ExpectedResult().Should().Be(augend.Value + addend.Value);

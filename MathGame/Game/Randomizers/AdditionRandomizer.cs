@@ -6,8 +6,8 @@ public class AdditionRandomizer(Random random)
 {
     public AdditionOperation Next(DifficultyLevelEnum difficultyLevel)
     {
-        return new AdditionOperation(Augend.Next(random, 1, GetMaxValue(difficultyLevel)),
-            Addend.Next(random, 1, GetMaxValue(difficultyLevel)));
+        return new AdditionOperation(Augend.Next(random, GetMaxValue(difficultyLevel)),
+            Addend.Next(random, GetMaxValue(difficultyLevel)));
     }
 
     private static int GetMaxValue(DifficultyLevelEnum difficultyLevel)

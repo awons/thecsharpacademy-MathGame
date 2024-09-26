@@ -9,8 +9,8 @@ public record Subtrahend
 
     public int Value { get; }
 
-    public static Subtrahend Next(Random random, int minValue, int maxValue)
+    public static Subtrahend Next(Random random, int maxValue)
     {
-        return new Subtrahend(random.Next(minValue, maxValue));
+        return new Subtrahend(random.Next(1, maxValue));
     }
 }

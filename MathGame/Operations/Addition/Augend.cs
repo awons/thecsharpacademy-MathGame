@@ -9,8 +9,8 @@ public record Augend
 
     public int Value { get; }
 
-    public static Augend Next(Random random, int minValue, int maxValue)
+    public static Augend Next(Random random, int maxValue)
     {
-        return new Augend(random.Next(minValue, maxValue));
+        return new Augend(random.Next(1, maxValue));
     }
 }
