@@ -2,9 +2,6 @@ namespace MathGame.Operations.Division;
 
 public record Divisor
 {
-    private const int MinValue = 1;
-    private const int MaxValue = 100;
-
     private Divisor(int value)
     {
         Value = value;
@@ -12,8 +9,8 @@ public record Divisor
 
     public int Value { get; }
 
-    public static Divisor Next(Random random)
+    public static Divisor Next(Random random, int maxValue)
     {
-        return new Divisor(random.Next(MinValue, MaxValue));
+        return new Divisor(random.Next(1, maxValue));
     }
 }

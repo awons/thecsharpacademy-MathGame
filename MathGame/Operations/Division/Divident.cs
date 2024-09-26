@@ -2,9 +2,6 @@ namespace MathGame.Operations.Division;
 
 public record Divident
 {
-    private const int MinValue = 0;
-    private const int MaxValue = 100;
-
     private Divident(int value)
     {
         Value = value;
@@ -12,8 +9,8 @@ public record Divident
 
     public int Value { get; }
 
-    public static Divident Next(Random random)
+    public static Divident Next(Random random, int maxValue)
     {
-        return new Divident(random.Next(MinValue, MaxValue));
+        return new Divident(random.Next(0, maxValue));
     }
 }

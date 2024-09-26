@@ -20,7 +20,7 @@ public class OperationFactory(
             OperationsEnum.Addition => additionRandomizer.Next(difficultyLevel),
             OperationsEnum.Subtraction => subtractionRandomizer.Next(difficultyLevel),
             OperationsEnum.Multiplication => multiplicationRandomizer.Next(difficultyLevel),
-            OperationsEnum.Division => divisionRandomizer.Next(),
+            OperationsEnum.Division => divisionRandomizer.Next(difficultyLevel),
             _ => throw new ArgumentOutOfRangeException(nameof(operationType), operationType, null)
         };
     }
