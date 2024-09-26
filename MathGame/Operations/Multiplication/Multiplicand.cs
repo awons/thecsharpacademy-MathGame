@@ -3,7 +3,6 @@ namespace MathGame.Operations.Multiplication;
 public record Multiplicand
 {
     private const int MinValue = 1;
-    private const int MaxValue = 10;
 
     private Multiplicand(int value)
     {
@@ -12,8 +11,8 @@ public record Multiplicand
 
     public int Value { get; }
 
-    public static Multiplicand Next(Random random)
+    public static Multiplicand Next(Random random, int maxValue)
     {
-        return new Multiplicand(random.Next(MinValue, MaxValue));
+        return new Multiplicand(random.Next(MinValue, maxValue));
     }
 }
