@@ -1,3 +1,5 @@
+using MathGame.Game;
+using MathGame.Game.Randomizers;
 using MathGame.Operations.Addition;
 using MathGame.Operations.Division;
 using MathGame.Operations.Multiplication;
@@ -11,11 +13,11 @@ public class OperationFactory(
     MultiplicationRandomizer multiplicationRandomizer,
     DivisionRandomizer divisionRandomizer)
 {
-    public IOperation Create(OperationsEnum operationType)
+    public IOperation Create(OperationsEnum operationType, DifficultyLevelEnum difficultyLevel)
     {
         return operationType switch
         {
-            OperationsEnum.Addition => additionRandomizer.Next(),
+            OperationsEnum.Addition => additionRandomizer.Next(difficultyLevel),
             OperationsEnum.Subtraction => subtractionRandomizer.Next(),
             OperationsEnum.Multiplication => multiplicationRandomizer.Next(),
             OperationsEnum.Division => divisionRandomizer.Next(),

@@ -2,7 +2,7 @@ using MathGame.Operations;
 
 namespace MathGame.UI;
 
-public class MenuChoiceToOperationMapper
+public static class MenuChoiceToOperationMapper
 {
     public static OperationsEnum Map(MenuChoiceEnum menuChoice)
     {

@@ -1,4 +1,5 @@
 ﻿using MathGame.Game;
+using MathGame.Game.Randomizers;
 using MathGame.Operations;
 using MathGame.Operations.Addition;
 using MathGame.Operations.Division;
@@ -29,7 +30,7 @@ do
     }
 
     Console.Clear();
-    var gamePlay = new GamePlay(operationFactory.Create(MenuChoiceToOperationMapper.Map(menuChoice)));
+    var gamePlay = new GamePlay(operationFactory.Create(MenuChoiceToOperationMapper.Map(menuChoice), DifficultyLevelEnum.Level1));
     GamePlayRenderer.Render(gamePlay);
     var gameResult = gamePlay.GiveAnswer(answerReader.GetAnswer());
     gameHistory.Add(gameResult);

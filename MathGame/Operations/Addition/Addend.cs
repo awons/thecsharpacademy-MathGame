@@ -2,9 +2,6 @@ namespace MathGame.Operations.Addition;
 
 public record Addend
 {
-    private const int MinValue = 1;
-    private const int MaxValue = 100;
-
     private Addend(int value)
     {
         Value = value;
@@ -12,8 +9,8 @@ public record Addend
 
     public int Value { get; }
 
-    public static Addend Next(Random random)
+    public static Addend Next(Random random, int minValue, int maxValue)
     {
-        return new Addend(random.Next(MinValue, MaxValue));
+        return new Addend(random.Next(minValue, maxValue));
     }
 }
