@@ -36,13 +36,14 @@ public class AdditionRandomizerTests
     [TestCase(DifficultyLevelEnum.Level3, 80)]
     [TestCase(DifficultyLevelEnum.Level4, 160)]
     [TestCase(DifficultyLevelEnum.Level5, 400)]
-    public void ResultWillNeverBeBiggerThanExpectedForLevel(DifficultyLevelEnum difficultyLevel, int maxResult)
+    public void ResultWillBeInRangeForExpectedDifficultyLevel(DifficultyLevelEnum difficultyLevel, int maxResult)
     {
         var random = new Random();
         for (var i = 0; i < 1000; i++)
         {
             var operation = new AdditionRandomizer(random).Next(difficultyLevel);
             operation.ExpectedResult().Should().BeLessOrEqualTo(maxResult);
+            operation.ExpectedResult().Should().BeGreaterOrEqualTo(2);
         }
     }
 }

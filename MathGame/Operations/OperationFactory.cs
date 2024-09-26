@@ -18,7 +18,7 @@ public class OperationFactory(
         return operationType switch
         {
             OperationsEnum.Addition => additionRandomizer.Next(difficultyLevel),
-            OperationsEnum.Subtraction => subtractionRandomizer.Next(),
+            OperationsEnum.Subtraction => subtractionRandomizer.Next(difficultyLevel),
             OperationsEnum.Multiplication => multiplicationRandomizer.Next(),
             OperationsEnum.Division => divisionRandomizer.Next(),
             _ => throw new ArgumentOutOfRangeException(nameof(operationType), operationType, null)

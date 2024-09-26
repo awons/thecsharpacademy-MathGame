@@ -2,9 +2,6 @@ namespace MathGame.Operations.Subtraction;
 
 public record Subtrahend
 {
-    private const int MinValue = 1;
-    private const int MaxValue = 100;
-
     private Subtrahend(int value)
     {
         Value = value;
@@ -12,8 +9,8 @@ public record Subtrahend
 
     public int Value { get; }
 
-    public static Subtrahend Next(Random random)
+    public static Subtrahend Next(Random random, int minValue, int maxValue)
     {
-        return new Subtrahend(random.Next(MinValue, MaxValue));
+        return new Subtrahend(random.Next(minValue, maxValue));
     }
 }

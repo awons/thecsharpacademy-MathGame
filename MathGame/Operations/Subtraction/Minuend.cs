@@ -2,9 +2,6 @@ namespace MathGame.Operations.Subtraction;
 
 public record Minuend
 {
-    private const int MinValue = 1;
-    private const int MaxValue = 100;
-
     private Minuend(int value)
     {
         Value = value;
@@ -12,8 +9,8 @@ public record Minuend
 
     public int Value { get; }
 
-    public static Minuend Next(Random random)
+    public static Minuend Next(Random random, int minValue, int maxValue)
     {
-        return new Minuend(random.Next(MinValue, MaxValue));
+        return new Minuend(random.Next(minValue, maxValue));
     }
 }

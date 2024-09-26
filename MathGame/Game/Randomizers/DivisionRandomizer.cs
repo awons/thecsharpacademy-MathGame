@@ -1,4 +1,6 @@
-namespace MathGame.Operations.Division;
+using MathGame.Operations.Division;
+
+namespace MathGame.Game.Randomizers;
 
 public class DivisionRandomizer(Random random)
 {

@@ -1,7 +1,7 @@
 using FluentAssertions;
-using MathGame.Operations.Division;
+using MathGame.Game.Randomizers;
 
-namespace TestMathGame.Operations.Division;
+namespace TestMathGame.Game.Randomizers;
 
 public class DivisionRandomizerTests
 {

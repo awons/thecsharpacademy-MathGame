@@ -1,4 +1,6 @@
-namespace MathGame.Operations.Multiplication;
+using MathGame.Operations.Multiplication;
+
+namespace MathGame.Game.Randomizers;
 
 public class MultiplicationRandomizer(Random random)
 {

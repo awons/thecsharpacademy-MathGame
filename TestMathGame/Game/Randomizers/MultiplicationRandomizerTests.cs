@@ -1,7 +1,7 @@
 using FluentAssertions;
-using MathGame.Operations.Multiplication;
+using MathGame.Game.Randomizers;
 
-namespace TestMathGame.Operations.Multiplication;
+namespace TestMathGame.Game.Randomizers;
 
 public class MultiplicationRandomizerTests
 {
