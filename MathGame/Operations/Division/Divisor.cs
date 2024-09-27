@@ -9,8 +9,8 @@ public record Divisor
 
     public int Value { get; }
 
-    public static Divisor Next(Random random, int maxValue)
+    public static Divisor Next(Random random, int minValue, int maxValue)
     {
-        return new Divisor(random.Next(1, maxValue));
+        return new Divisor(random.Next(minValue, maxValue));
     }
 }

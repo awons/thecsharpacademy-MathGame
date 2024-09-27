@@ -9,8 +9,8 @@ public record Divident
 
     public int Value { get; }
 
-    public static Divident Next(Random random, int maxValue)
+    public static Divident Next(Random random, int minValue, int maxValue)
     {
-        return new Divident(random.Next(0, maxValue));
+        return new Divident(random.Next(minValue, maxValue));
     }
 }

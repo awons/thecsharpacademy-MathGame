@@ -9,8 +9,8 @@ public class DivisionTests
     public void WillReturnCorrectResult()
     {
         var random = new Random();
-        var divident = Divident.Next(random, 100);
-        var divisor = Divisor.Next(random, 100);
+        var divident = Divident.Next(random, 1, 100);
+        var divisor = Divisor.Next(random, 1, 100);
         var operation = new DivisionOperation(divident, divisor);
 
         operation.ExpectedResult().Should().Be(divident.Value / divisor.Value);
