@@ -1,11 +1,6 @@
 ﻿using MathGame.Game;
 using MathGame.Game.Randomizers;
 using MathGame.Operations;
-using MathGame.Operations.Addition;
-using MathGame.Operations.Division;
-using MathGame.Operations.Multiplication;
-using MathGame.Operations.Subtraction;
-using MathGame.UI;
 using MathGame.UI.Game;
 using MathGame.UI.Menu;
 
