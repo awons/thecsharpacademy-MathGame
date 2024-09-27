@@ -6,6 +6,7 @@ public class Menu
     private const char ChoiceSubtraction = 's';
     private const char ChoiceMultiplication = 'm';
     private const char ChoiceDivision = 'd';
+    private const char ChoiceRandom = 'r';
     private const char ChoiceHistory = 'h';
     private const char ChoiceQuit = 'q';
 
@@ -16,6 +17,7 @@ public class Menu
 {ChoiceSubtraction}: Subtraction
 {ChoiceMultiplication}: Multiplication
 {ChoiceDivision}: Division
+{ChoiceRandom}: Random
 {ChoiceHistory}: History
 {ChoiceQuit}: Quit
 ------------------------------------------------

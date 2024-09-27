@@ -6,6 +6,7 @@ public enum MenuChoiceEnum
     Subtraction = 's',
     Multiplication = 'm',
     Division = 'd',
+    Random = 'r',
     History = 'h',
     Quit = 'q',
 }
