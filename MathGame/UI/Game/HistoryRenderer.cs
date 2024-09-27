@@ -1,8 +1,8 @@
 using MathGame.Game;
 
-namespace MathGame.UI;
+namespace MathGame.UI.Game;
 
-public class HistoryRenderer
+public static class HistoryRenderer
 {
     public static void Render(GameHistory history)
     {

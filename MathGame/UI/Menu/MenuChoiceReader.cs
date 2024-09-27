@@ -1,8 +1,8 @@
-namespace MathGame.UI;
+namespace MathGame.UI.Menu;
 
-public class MenuChoiceReader
+public static class MenuChoiceReader
 {
-    public MenuChoiceEnum GetChoice()
+    public static MenuChoiceEnum GetChoice()
     {
         char choice;
         var currentPositionLeft = Console.CursorLeft;

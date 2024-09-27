@@ -1,6 +1,6 @@
 using MathGame.Operations;
 
-namespace MathGame.UI;
+namespace MathGame.UI.Menu;
 
 public static class MenuChoiceToOperationMapper
 {

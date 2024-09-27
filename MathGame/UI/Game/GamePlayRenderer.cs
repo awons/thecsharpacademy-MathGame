@@ -1,9 +1,8 @@
 using MathGame.Game;
-using MathGame.Operations;
 
-namespace MathGame.UI;
+namespace MathGame.UI.Game;
 
-public class GamePlayRenderer
+public static class GamePlayRenderer
 {
     public static void Render(GamePlay gamePlay)
     {

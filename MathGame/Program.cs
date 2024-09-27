@@ -6,6 +6,8 @@ using MathGame.Operations.Division;
 using MathGame.Operations.Multiplication;
 using MathGame.Operations.Subtraction;
 using MathGame.UI;
+using MathGame.UI.Game;
+using MathGame.UI.Menu;
 
 var menu = new Menu();
 var random = new Random();
@@ -17,7 +19,7 @@ var answerReader = new AnswerReader();
 do
 {
     MenuRenderer.Render(menu);
-    var menuChoice = new MenuChoiceReader().GetChoice();
+    var menuChoice = MenuChoiceReader.GetChoice();
     if (menuChoice == MenuChoiceEnum.Quit)
     {
         break;

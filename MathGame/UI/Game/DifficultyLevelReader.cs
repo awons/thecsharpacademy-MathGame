@@ -1,6 +1,6 @@
 using MathGame.Game;
 
-namespace MathGame.UI;
+namespace MathGame.UI.Game;
 
 public static class DifficultyLevelReader
 {

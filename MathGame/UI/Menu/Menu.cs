@@ -1,6 +1,6 @@
-namespace MathGame.UI;
+namespace MathGame.UI.Menu;
 
-public record Menu
+public class Menu
 {
     private const char ChoiceAddition = 'a';
     private const char ChoiceSubtraction = 's';

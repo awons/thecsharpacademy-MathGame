@@ -1,8 +1,8 @@
 using MathGame.Operations;
 
-namespace MathGame.UI;
+namespace MathGame.UI.Game;
 
-public class OperationToStringMapper
+public static class OperationToStringMapper
 {
     public static string Map(IOperation operation)
     {
