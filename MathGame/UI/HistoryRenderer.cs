@@ -14,6 +14,8 @@ public class HistoryRenderer
             var resultString = gameResult.Won() ? "Won" : "Lost";
             Console.WriteLine(
                 $"{gameResult.Operation.GetLeftOperand()} {operationString} {gameResult.Operation.GetRightOperand()} = {gameResult.Answer} [correct answer: {gameResult.Operation.ExpectedResult()}] {resultString}");
+            SolvingTimeRenderer.RenderSolvingTime(gameResult);
+            Console.WriteLine(new string('-', Console.WindowWidth));
         }
 
         Console.WriteLine("Press any key to continue...");

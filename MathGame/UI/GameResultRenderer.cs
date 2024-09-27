@@ -2,7 +2,7 @@ using MathGame.Game;
 
 namespace MathGame.UI;
 
-public class GameResultRenderer
+public static class GameResultRenderer
 {
     public static void Render(GameResult gameResult)
     {
@@ -18,6 +18,8 @@ public class GameResultRenderer
             Console.WriteLine(
                 $"The result of {gameResult.Operation.GetLeftOperand()} {operationString} {gameResult.Operation.GetRightOperand()} is {gameResult.Operation.ExpectedResult()}");
         }
+
+        SolvingTimeRenderer.RenderSolvingTime(gameResult);
 
         Console.WriteLine("Press any key to continue...");
         Console.ReadKey();
