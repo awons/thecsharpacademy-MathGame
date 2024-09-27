@@ -1,8 +1,8 @@
 namespace MathGame.UI.Game;
 
-public class AnswerReader
+public static class AnswerReader
 {
-    public int GetAnswer()
+    public static int GetAnswer()
     {
         var currentPositionTop = Console.CursorTop;
         var currentPositionLeft = Console.CursorLeft;

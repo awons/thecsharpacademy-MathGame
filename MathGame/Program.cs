@@ -14,7 +14,6 @@ var random = new Random();
 var operationFactory = new OperationFactory(new AdditionRandomizer(random), new SubtractionRandomizer(random),
     new MultiplicationRandomizer(random), new DivisionRandomizer(random));
 var gameHistory = new GameHistory();
-var answerReader = new AnswerReader();
 
 do
 {
@@ -38,7 +37,7 @@ do
     var gamePlay =
         new GamePlay(operationFactory.Create(MenuChoiceToOperationMapper.Map(menuChoice), difficultyLevel));
     GamePlayRenderer.Render(gamePlay);
-    var gameResult = gamePlay.GiveAnswer(answerReader.GetAnswer());
+    var gameResult = gamePlay.GiveAnswer(AnswerReader.GetAnswer());
     gameHistory.Add(gameResult);
     GameResultRenderer.Render(gameResult);
 } while (true);
