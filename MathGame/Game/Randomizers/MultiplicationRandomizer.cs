@@ -6,8 +6,22 @@ public class MultiplicationRandomizer(Random random)
 {
     public MultiplicationOperation Next(DifficultyLevelEnum difficultyLevel)
     {
-        return new MultiplicationOperation(Multiplier.Next(random, GetMaxValue(difficultyLevel)),
-            Multiplicand.Next(random, GetMaxValue(difficultyLevel)));
+        return new MultiplicationOperation(
+            Multiplier.Next(random, GetMinValue(difficultyLevel), GetMaxValue(difficultyLevel)),
+            Multiplicand.Next(random, GetMinValue(difficultyLevel), GetMaxValue(difficultyLevel)));
+    }
+
+    private static int GetMinValue(DifficultyLevelEnum difficultyLevel)
+    {
+        return difficultyLevel switch
+        {
+            DifficultyLevelEnum.Level1 => 1,
+            DifficultyLevelEnum.Level2 => 3,
+            DifficultyLevelEnum.Level3 => 5,
+            DifficultyLevelEnum.Level4 => 10,
+            DifficultyLevelEnum.Level5 => 15,
+            _ => throw new ArgumentOutOfRangeException(nameof(difficultyLevel), difficultyLevel, null)
+        };
     }
 
     private static int GetMaxValue(DifficultyLevelEnum difficultyLevel)
