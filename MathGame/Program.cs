@@ -29,9 +29,12 @@ do
         continue;
     }
 
+    DifficultyLevelRenderer.Render();
+    var difficultyLevel = DifficultyLevelReader.GetChoice();
+
     Console.Clear();
     var gamePlay =
-        new GamePlay(operationFactory.Create(MenuChoiceToOperationMapper.Map(menuChoice), DifficultyLevelEnum.Level1));
+        new GamePlay(operationFactory.Create(MenuChoiceToOperationMapper.Map(menuChoice), difficultyLevel));
     GamePlayRenderer.Render(gamePlay);
     var gameResult = gamePlay.GiveAnswer(answerReader.GetAnswer());
     gameHistory.Add(gameResult);

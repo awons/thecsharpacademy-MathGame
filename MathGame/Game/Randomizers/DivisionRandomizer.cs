@@ -16,7 +16,7 @@ public class DivisionRandomizer(Random random)
 
         return new DivisionOperation(divident, divisor);
     }
-    
+
     private static int GetMaxValue(DifficultyLevelEnum difficultyLevel)
     {
         return difficultyLevel switch
