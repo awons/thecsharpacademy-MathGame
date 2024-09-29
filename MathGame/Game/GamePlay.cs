@@ -2,22 +2,14 @@ using MathGame.Operations;
 
 namespace MathGame.Game;
 
-public class GamePlay
+public class GamePlay(IOperation operation)
 {
-    private readonly DateTime _startTime;
+    private readonly DateTime _startTime = DateTime.Now;
     private DateTime _endTime;
-
-    public IOperation Operation { get; }
-
-    public GamePlay(IOperation operation)
-    {
-        Operation = operation;
-        _startTime = DateTime.Now;
-    }
 
     public GameResult GiveAnswer(int answer)
     {
         _endTime = DateTime.Now;
-        return new GameResult(Operation, answer, _endTime - _startTime);
+        return new GameResult(operation, answer, _endTime - _startTime);
     }
 }
