@@ -36,5 +36,7 @@ public class GameLoop(OperationFactory operationFactory, Menu.Menu gameMenu)
             gameHistory.Add(gameResult);
             GameResultRenderer.Render(gameResult);
         } while (true);
+
+        Console.Clear();
     }
 }

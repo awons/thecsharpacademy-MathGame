@@ -21,5 +21,3 @@ var host = Host.CreateDefaultBuilder()
 
 var loop = ActivatorUtilities.CreateInstance<GameLoop>(host.Services);
 loop.Run();
-
-Console.Clear();
