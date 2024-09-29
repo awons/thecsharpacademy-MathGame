@@ -9,13 +9,13 @@ var host = Host.CreateDefaultBuilder()
     .ConfigureServices(services =>
     {
         var random = new Random();
-        services.AddTransient<OperationFactory>();
-        services.AddTransient<AdditionRandomizer>(_ => new AdditionRandomizer(random));
-        services.AddTransient<SubtractionRandomizer>(_ => new SubtractionRandomizer(random));
-        services.AddTransient<MultiplicationRandomizer>(_ => new MultiplicationRandomizer(random));
-        services.AddTransient<DivisionRandomizer>(_ => new DivisionRandomizer(random));
+        services.AddSingleton<OperationFactory>();
+        services.AddSingleton<AdditionRandomizer>(_ => new AdditionRandomizer(random));
+        services.AddSingleton<SubtractionRandomizer>(_ => new SubtractionRandomizer(random));
+        services.AddSingleton<MultiplicationRandomizer>(_ => new MultiplicationRandomizer(random));
+        services.AddSingleton<DivisionRandomizer>(_ => new DivisionRandomizer(random));
+        services.AddSingleton<Menu>();
         services.AddTransient<GameLoop>();
-        services.AddTransient<Menu>();
     })
     .Build();
 
