@@ -5,15 +5,14 @@ using MathGame.UI.Menu;
 
 namespace MathGame.UI;
 
-public class GameLoop(OperationFactory operationFactory)
+public class GameLoop(OperationFactory operationFactory, Menu.Menu gameMenu)
 {
     public void Run()
     {
         var gameHistory = new GameHistory();
-        var menu = new Menu.Menu();
         do
         {
-            MenuRenderer.Render(menu);
+            MenuRenderer.Render(gameMenu);
             var menuChoice = MenuChoiceReader.GetChoice();
             if (menuChoice == MenuChoiceEnum.Quit)
             {
