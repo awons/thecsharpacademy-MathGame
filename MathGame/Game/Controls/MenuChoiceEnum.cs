@@ -1,4 +1,4 @@
-namespace MathGame.UI.Menu;
+namespace MathGame.Game.Controls;
 
 public enum MenuChoiceEnum
 {

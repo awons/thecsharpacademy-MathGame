@@ -18,6 +18,7 @@ var host = Host.CreateDefaultBuilder()
         services.AddSingleton<Menu>();
         services.AddSingleton<IAnswerReader, ConsoleAnswerReader>();
         services.AddSingleton<IDifficultyLevelReader, ConsoleDifficultyLevelReader>();
+        services.AddSingleton<IMenuChoiceReader, ConsoleMenuChoiceReader>();
         services.AddTransient<GameLoop>();
     })
     .Build();

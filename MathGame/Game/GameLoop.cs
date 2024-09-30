@@ -9,7 +9,9 @@ public class GameLoop(
     OperationFactory operationFactory,
     Menu gameMenu,
     IAnswerReader answerReader,
-    IDifficultyLevelReader difficultyLevelReader)
+    IDifficultyLevelReader difficultyLevelReader,
+    IMenuChoiceReader menuChoiceReader
+)
 {
     public void Run()
     {
@@ -17,7 +19,7 @@ public class GameLoop(
         do
         {
             MenuRenderer.Render(gameMenu);
-            var menuChoice = MenuChoiceReader.GetChoice();
+            var menuChoice = menuChoiceReader.GetChoice();
             if (menuChoice == MenuChoiceEnum.Quit)
             {
                 break;

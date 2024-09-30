@@ -1,3 +1,4 @@
+using MathGame.Game.Controls;
 using MathGame.Operations;
 
 namespace MathGame.UI.Menu;
