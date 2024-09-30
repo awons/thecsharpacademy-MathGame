@@ -17,6 +17,7 @@ var host = Host.CreateDefaultBuilder()
         services.AddSingleton<DivisionRandomizer>(_ => new DivisionRandomizer(random));
         services.AddSingleton<Menu>();
         services.AddSingleton<IAnswerReader, ConsoleAnswerReader>();
+        services.AddSingleton<IDifficultyLevelReader, ConsoleDifficultyLevelReader>();
         services.AddTransient<GameLoop>();
     })
     .Build();

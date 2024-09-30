@@ -1,10 +1,8 @@
-using MathGame.Game;
+namespace MathGame.Game.Controls;
 
-namespace MathGame.UI.Game;
-
-public static class DifficultyLevelReader
+public class ConsoleDifficultyLevelReader : IDifficultyLevelReader
 {
-    public static DifficultyLevelEnum GetChoice()
+    public DifficultyLevelEnum GetChoice()
     {
         int choice;
         var currentPositionLeft = Console.CursorLeft;

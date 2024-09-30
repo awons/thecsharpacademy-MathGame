@@ -5,7 +5,11 @@ using MathGame.UI.Menu;
 
 namespace MathGame.Game;
 
-public class GameLoop(OperationFactory operationFactory, Menu gameMenu, IAnswerReader answerReader)
+public class GameLoop(
+    OperationFactory operationFactory,
+    Menu gameMenu,
+    IAnswerReader answerReader,
+    IDifficultyLevelReader difficultyLevelReader)
 {
     public void Run()
     {
@@ -26,7 +30,7 @@ public class GameLoop(OperationFactory operationFactory, Menu gameMenu, IAnswerR
             }
 
             DifficultyLevelRenderer.Render();
-            var difficultyLevel = DifficultyLevelReader.GetChoice();
+            var difficultyLevel = difficultyLevelReader.GetChoice();
 
             Console.Clear();
             var gamePlay =
