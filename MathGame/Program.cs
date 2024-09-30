@@ -1,6 +1,7 @@
-﻿using MathGame.Game.Randomizers;
+﻿using MathGame.Game;
+using MathGame.Game.Controls;
+using MathGame.Game.Randomizers;
 using MathGame.Operations;
-using MathGame.UI;
 using MathGame.UI.Menu;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,6 +16,7 @@ var host = Host.CreateDefaultBuilder()
         services.AddSingleton<MultiplicationRandomizer>(_ => new MultiplicationRandomizer(random));
         services.AddSingleton<DivisionRandomizer>(_ => new DivisionRandomizer(random));
         services.AddSingleton<Menu>();
+        services.AddSingleton<IAnswerReader, ConsoleAnswerReader>();
         services.AddTransient<GameLoop>();
     })
     .Build();

@@ -1,11 +1,11 @@
-using MathGame.Game;
+using MathGame.Game.Controls;
 using MathGame.Operations;
 using MathGame.UI.Game;
 using MathGame.UI.Menu;
 
-namespace MathGame.UI;
+namespace MathGame.Game;
 
-public class GameLoop(OperationFactory operationFactory, Menu.Menu gameMenu)
+public class GameLoop(OperationFactory operationFactory, Menu gameMenu, IAnswerReader answerReader)
 {
     public void Run()
     {
@@ -32,7 +32,7 @@ public class GameLoop(OperationFactory operationFactory, Menu.Menu gameMenu)
             var gamePlay =
                 new GamePlay(operationFactory.Create(MenuChoiceToOperationMapper.Map(menuChoice), difficultyLevel));
             GamePlayRenderer.Render(gamePlay);
-            var gameResult = gamePlay.GiveAnswer(AnswerReader.GetAnswer());
+            var gameResult = gamePlay.GiveAnswer(answerReader.GetAnswer());
             gameHistory.Add(gameResult);
             GameResultRenderer.Render(gameResult);
         } while (true);
