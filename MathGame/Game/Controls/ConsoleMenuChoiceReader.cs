@@ -11,7 +11,7 @@ public class ConsoleMenuChoiceReader : IMenuChoiceReader
         var currentPositionTop = Console.CursorTop;
         do
         {
-            choice = Console.ReadKey().KeyChar;
+            choice = Console.IsInputRedirected ? Convert.ToChar(Console.ReadLine()) : Console.ReadKey().KeyChar;
             Console.SetCursorPosition(currentPositionLeft, currentPositionTop);
             Console.Write(' ');
             Console.SetCursorPosition(currentPositionLeft, currentPositionTop);

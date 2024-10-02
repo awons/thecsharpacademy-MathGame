@@ -44,5 +44,6 @@ public class GameLoop(
         } while (true);
 
         Console.Clear();
+        Console.WriteLine("Thank you for playing!");
     }
 }
