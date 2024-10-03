@@ -91,6 +91,18 @@ public class GameLoopTests
         _consoleOutput.ToString().Split(Environment.NewLine).Should().Contain("Your previous games:");
     }
 
+    [Test]
+    [CancelAfter(1000)]
+    public void WillShotTimeItTookToSolveTheGame()
+    {
+        SetUpWillShotTimeItTookToSolveTheGame();
+
+        RunGameLoop();
+
+        _consoleOutput.ToString().Split(Environment.NewLine).Should()
+            .ContainMatch("It took you *s to solve the problem");
+    }
+
     private void RunGameLoop()
     {
         var loop = new GameLoop(_operationFactory, _menu, _answerReader, _difficultyLevelReader,
@@ -158,6 +170,28 @@ public class GameLoopTests
     }
 
     private void SetUpWillShowGameResults()
+    {
+        var menuChoiceReaderMock = new Mock<IMenuChoiceReader>();
+        var sequence = new MockSequence();
+
+        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Addition);
+        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Quit);
+        _menuChoiceReader = menuChoiceReaderMock.Object;
+
+        var difficultyLevelReaderMock = new Mock<IDifficultyLevelReader>();
+        difficultyLevelReaderMock.Setup(reader => reader.GetChoice()).Returns(DifficultyLevelEnum.Level1);
+        _difficultyLevelReader = difficultyLevelReaderMock.Object;
+
+        var answerReaderMock = new Mock<IAnswerReader>();
+        answerReaderMock.Setup(reader => reader.GetAnswer()).Returns(0);
+        _answerReader = answerReaderMock.Object;
+
+        var keyAwaiterMock = new Mock<IKeyAwaiter>();
+        keyAwaiterMock.Setup(awaiter => awaiter.Wait());
+        _keyAwaiter = keyAwaiterMock.Object;
+    }
+
+    private void SetUpWillShotTimeItTookToSolveTheGame()
     {
         var menuChoiceReaderMock = new Mock<IMenuChoiceReader>();
         var sequence = new MockSequence();
