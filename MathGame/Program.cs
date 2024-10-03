@@ -2,6 +2,8 @@
 using MathGame.Game.Controls;
 using MathGame.Game.Randomizers;
 using MathGame.Operations;
+using MathGame.UI;
+using MathGame.UI.Game;
 using MathGame.UI.Menu;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,6 +21,8 @@ var host = Host.CreateDefaultBuilder()
         services.AddSingleton<IAnswerReader, ConsoleAnswerReader>();
         services.AddSingleton<IDifficultyLevelReader, ConsoleDifficultyLevelReader>();
         services.AddSingleton<IMenuChoiceReader, ConsoleMenuChoiceReader>();
+        services.AddSingleton<IKeyAwaiter, ConsoleKeyAwaiter>();
+        services.AddSingleton<GameResultRenderer>();
         services.AddTransient<GameLoop>();
     })
     .Build();

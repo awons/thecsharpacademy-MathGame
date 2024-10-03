@@ -1,9 +1,12 @@
+using System.Data;
 using System.Text;
 using FluentAssertions;
 using MathGame.Game;
 using MathGame.Game.Controls;
 using MathGame.Game.Randomizers;
 using MathGame.Operations;
+using MathGame.UI;
+using MathGame.UI.Game;
 using MathGame.UI.Menu;
 using Moq;
 
@@ -17,6 +20,7 @@ public class GameLoopTests
     private IAnswerReader _answerReader;
     private IDifficultyLevelReader _difficultyLevelReader;
     private IMenuChoiceReader _menuChoiceReader;
+    private IKeyAwaiter _keyAwaiter;
 
     [SetUp]
     public void Setup()
@@ -36,7 +40,7 @@ public class GameLoopTests
     {
         SetUpWillShowMainMenuWhenStarted();
         var loop = new GameLoop(_operationFactory, _menu, _answerReader, _difficultyLevelReader,
-            _menuChoiceReader);
+            _menuChoiceReader, new GameResultRenderer(_keyAwaiter));
         loop.Run();
 
         var firstLine = _consoleOutput.ToString().Split(Environment.NewLine).First();
@@ -49,11 +53,31 @@ public class GameLoopTests
     {
         SetUpWillQuitTheGameIfQuitMenuItemChosen();
         var loop = new GameLoop(_operationFactory, _menu, _answerReader, _difficultyLevelReader,
-            _menuChoiceReader);
+            _menuChoiceReader, new GameResultRenderer(_keyAwaiter));
         loop.Run();
 
         var lastLine = _consoleOutput.ToString().Split(Environment.NewLine)[^2];
         lastLine.Should().Contain("Thank you for playing!");
+    }
+
+    [Test]
+    [CancelAfter(1000)]
+    public void WillLetUserChooseDifficultyLevel()
+    {
+        SetUpWillLetUserChooseDifficultyLevel();
+
+        var loop = new GameLoop(_operationFactory, _menu, _answerReader, _difficultyLevelReader,
+            _menuChoiceReader, new GameResultRenderer(_keyAwaiter));
+        loop.Run();
+
+        _consoleOutput.ToString().Should().Contain("Choose difficulty Level");
+    }
+
+    private void SetUpWillShowMainMenuWhenStarted()
+    {
+        var mock = new Mock<IMenuChoiceReader>();
+        mock.Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Quit);
+        _menuChoiceReader = mock.Object;
     }
 
     private void SetUpWillQuitTheGameIfQuitMenuItemChosen()
@@ -63,10 +87,25 @@ public class GameLoopTests
         _menuChoiceReader = mock.Object;
     }
 
-    private void SetUpWillShowMainMenuWhenStarted()
+    private void SetUpWillLetUserChooseDifficultyLevel()
     {
-        var mock = new Mock<IMenuChoiceReader>();
-        mock.Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Quit);
-        _menuChoiceReader = mock.Object;
+        var menuChoiceReaderMock = new Mock<IMenuChoiceReader>();
+        var sequence = new MockSequence();
+
+        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Addition);
+        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Quit);
+        _menuChoiceReader = menuChoiceReaderMock.Object;
+
+        var difficultyLevelReaderMock = new Mock<IDifficultyLevelReader>();
+        difficultyLevelReaderMock.Setup(reader => reader.GetChoice()).Returns(DifficultyLevelEnum.Level1);
+        _difficultyLevelReader = difficultyLevelReaderMock.Object;
+
+        var answerReaderMock = new Mock<IAnswerReader>();
+        answerReaderMock.Setup(reader => reader.GetAnswer()).Returns(0);
+        _answerReader = answerReaderMock.Object;
+
+        var keyAwaiterMock = new Mock<IKeyAwaiter>();
+        keyAwaiterMock.Setup(awaiter => awaiter.Wait());
+        _keyAwaiter = keyAwaiterMock.Object;
     }
 }

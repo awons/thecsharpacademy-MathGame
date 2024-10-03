@@ -2,9 +2,9 @@ using MathGame.Game;
 
 namespace MathGame.UI.Game;
 
-public static class GameResultRenderer
+public class GameResultRenderer(IKeyAwaiter keyAwaiter)
 {
-    public static void Render(GameResult gameResult)
+    public void Render(GameResult gameResult)
     {
         Console.Clear();
         if (gameResult.Won())
@@ -21,7 +21,6 @@ public static class GameResultRenderer
 
         SolvingTimeRenderer.RenderSolvingTime(gameResult);
 
-        Console.WriteLine("Press any key to continue...");
-        Console.ReadKey();
+        keyAwaiter.Wait();
     }
 }

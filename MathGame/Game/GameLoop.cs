@@ -10,7 +10,8 @@ public class GameLoop(
     Menu gameMenu,
     IAnswerReader answerReader,
     IDifficultyLevelReader difficultyLevelReader,
-    IMenuChoiceReader menuChoiceReader
+    IMenuChoiceReader menuChoiceReader,
+    GameResultRenderer gameResultRenderer
 )
 {
     public void Run()
@@ -40,7 +41,7 @@ public class GameLoop(
             GamePlayRenderer.Render(gamePlay);
             var gameResult = gamePlay.GiveAnswer(answerReader.GetAnswer());
             gameHistory.Add(gameResult);
-            GameResultRenderer.Render(gameResult);
+            gameResultRenderer.Render(gameResult);
         } while (true);
 
         Console.Clear();
