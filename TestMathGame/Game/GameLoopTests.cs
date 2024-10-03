@@ -126,78 +126,31 @@ public class GameLoopTests
 
     private void SetUpWillLetUserChooseDifficultyLevel()
     {
-        var menuChoiceReaderMock = new Mock<IMenuChoiceReader>();
-        var sequence = new MockSequence();
-
-        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Addition);
-        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Quit);
-        _menuChoiceReader = menuChoiceReaderMock.Object;
-
-        var difficultyLevelReaderMock = new Mock<IDifficultyLevelReader>();
-        difficultyLevelReaderMock.Setup(reader => reader.GetChoice()).Returns(DifficultyLevelEnum.Level1);
-        _difficultyLevelReader = difficultyLevelReaderMock.Object;
-
-        var answerReaderMock = new Mock<IAnswerReader>();
-        answerReaderMock.Setup(reader => reader.GetAnswer()).Returns(0);
-        _answerReader = answerReaderMock.Object;
-
-        var keyAwaiterMock = new Mock<IKeyAwaiter>();
-        keyAwaiterMock.Setup(awaiter => awaiter.Wait());
-        _keyAwaiter = keyAwaiterMock.Object;
+        SetUpGamePlay([MenuChoiceEnum.Addition, MenuChoiceEnum.Quit]);
     }
 
     private void SetUpWillShowGameHistoryWhenRequested()
     {
-        var menuChoiceReaderMock = new Mock<IMenuChoiceReader>();
-        var sequence = new MockSequence();
-
-        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Addition);
-        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.History);
-        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Quit);
-        _menuChoiceReader = menuChoiceReaderMock.Object;
-
-        var difficultyLevelReaderMock = new Mock<IDifficultyLevelReader>();
-        difficultyLevelReaderMock.Setup(reader => reader.GetChoice()).Returns(DifficultyLevelEnum.Level1);
-        _difficultyLevelReader = difficultyLevelReaderMock.Object;
-
-        var answerReaderMock = new Mock<IAnswerReader>();
-        answerReaderMock.Setup(reader => reader.GetAnswer()).Returns(0);
-        _answerReader = answerReaderMock.Object;
-
-        var keyAwaiterMock = new Mock<IKeyAwaiter>();
-        keyAwaiterMock.Setup(awaiter => awaiter.Wait());
-        _keyAwaiter = keyAwaiterMock.Object;
+        SetUpGamePlay([MenuChoiceEnum.Addition, MenuChoiceEnum.History, MenuChoiceEnum.Quit]);
     }
 
     private void SetUpWillShowGameResults()
     {
-        var menuChoiceReaderMock = new Mock<IMenuChoiceReader>();
-        var sequence = new MockSequence();
-
-        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Addition);
-        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Quit);
-        _menuChoiceReader = menuChoiceReaderMock.Object;
-
-        var difficultyLevelReaderMock = new Mock<IDifficultyLevelReader>();
-        difficultyLevelReaderMock.Setup(reader => reader.GetChoice()).Returns(DifficultyLevelEnum.Level1);
-        _difficultyLevelReader = difficultyLevelReaderMock.Object;
-
-        var answerReaderMock = new Mock<IAnswerReader>();
-        answerReaderMock.Setup(reader => reader.GetAnswer()).Returns(0);
-        _answerReader = answerReaderMock.Object;
-
-        var keyAwaiterMock = new Mock<IKeyAwaiter>();
-        keyAwaiterMock.Setup(awaiter => awaiter.Wait());
-        _keyAwaiter = keyAwaiterMock.Object;
+        SetUpGamePlay([MenuChoiceEnum.Addition, MenuChoiceEnum.Quit]);
     }
 
     private void SetUpWillShotTimeItTookToSolveTheGame()
     {
+        SetUpGamePlay([MenuChoiceEnum.Addition, MenuChoiceEnum.Quit]);
+    }
+
+    private void SetUpGamePlay(List<MenuChoiceEnum> choices)
+    {
         var menuChoiceReaderMock = new Mock<IMenuChoiceReader>();
         var sequence = new MockSequence();
 
-        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Addition);
-        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Quit);
+        foreach (var choice in choices)
+            menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(choice);
         _menuChoiceReader = menuChoiceReaderMock.Object;
 
         var difficultyLevelReaderMock = new Mock<IDifficultyLevelReader>();
