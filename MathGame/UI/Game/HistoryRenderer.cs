@@ -2,9 +2,9 @@ using MathGame.Game;
 
 namespace MathGame.UI.Game;
 
-public static class HistoryRenderer
+public class HistoryRenderer(IKeyAwaiter keyAwaiter)
 {
-    public static void Render(GameHistory history)
+    public void Render(GameHistory history)
     {
         Console.Clear();
         Console.WriteLine("Your previous games:");
@@ -18,7 +18,6 @@ public static class HistoryRenderer
             Console.WriteLine(new string('-', Console.WindowWidth));
         }
 
-        Console.WriteLine("Press any key to continue...");
-        Console.ReadKey();
+        keyAwaiter.Wait();
     }
 }

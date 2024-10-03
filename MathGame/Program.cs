@@ -23,6 +23,7 @@ var host = Host.CreateDefaultBuilder()
         services.AddSingleton<IMenuChoiceReader, ConsoleMenuChoiceReader>();
         services.AddSingleton<IKeyAwaiter, ConsoleKeyAwaiter>();
         services.AddSingleton<GameResultRenderer>();
+        services.AddSingleton<HistoryRenderer>();
         services.AddTransient<GameLoop>();
     })
     .Build();

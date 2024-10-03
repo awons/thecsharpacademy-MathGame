@@ -39,9 +39,8 @@ public class GameLoopTests
     public void WillShowMainMenuWhenStarted()
     {
         SetUpWillShowMainMenuWhenStarted();
-        var loop = new GameLoop(_operationFactory, _menu, _answerReader, _difficultyLevelReader,
-            _menuChoiceReader, new GameResultRenderer(_keyAwaiter));
-        loop.Run();
+
+        RunGameLoop();
 
         var firstLine = _consoleOutput.ToString().Split(Environment.NewLine).First();
         firstLine.Should().Contain("What game do you want to play?");
@@ -52,9 +51,8 @@ public class GameLoopTests
     public void WillQuitTheGameIfQuitMenuItemChosen()
     {
         SetUpWillQuitTheGameIfQuitMenuItemChosen();
-        var loop = new GameLoop(_operationFactory, _menu, _answerReader, _difficultyLevelReader,
-            _menuChoiceReader, new GameResultRenderer(_keyAwaiter));
-        loop.Run();
+
+        RunGameLoop();
 
         var lastLine = _consoleOutput.ToString().Split(Environment.NewLine)[^2];
         lastLine.Should().Contain("Thank you for playing!");
@@ -66,11 +64,27 @@ public class GameLoopTests
     {
         SetUpWillLetUserChooseDifficultyLevel();
 
-        var loop = new GameLoop(_operationFactory, _menu, _answerReader, _difficultyLevelReader,
-            _menuChoiceReader, new GameResultRenderer(_keyAwaiter));
-        loop.Run();
+        RunGameLoop();
 
         _consoleOutput.ToString().Should().Contain("Choose difficulty Level");
+    }
+
+    [Test]
+    [CancelAfter(1000)]
+    public void WillShowGameHistoryWhenRequested()
+    {
+        SetUpWillShowGameHistoryWhenRequested();
+
+        RunGameLoop();
+
+        _consoleOutput.ToString().Split(Environment.NewLine).Should().Contain("Your previous games:");
+    }
+
+    private void RunGameLoop()
+    {
+        var loop = new GameLoop(_operationFactory, _menu, _answerReader, _difficultyLevelReader,
+            _menuChoiceReader, new GameResultRenderer(_keyAwaiter), new HistoryRenderer(_keyAwaiter));
+        loop.Run();
     }
 
     private void SetUpWillShowMainMenuWhenStarted()
@@ -93,6 +107,29 @@ public class GameLoopTests
         var sequence = new MockSequence();
 
         menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Addition);
+        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Quit);
+        _menuChoiceReader = menuChoiceReaderMock.Object;
+
+        var difficultyLevelReaderMock = new Mock<IDifficultyLevelReader>();
+        difficultyLevelReaderMock.Setup(reader => reader.GetChoice()).Returns(DifficultyLevelEnum.Level1);
+        _difficultyLevelReader = difficultyLevelReaderMock.Object;
+
+        var answerReaderMock = new Mock<IAnswerReader>();
+        answerReaderMock.Setup(reader => reader.GetAnswer()).Returns(0);
+        _answerReader = answerReaderMock.Object;
+
+        var keyAwaiterMock = new Mock<IKeyAwaiter>();
+        keyAwaiterMock.Setup(awaiter => awaiter.Wait());
+        _keyAwaiter = keyAwaiterMock.Object;
+    }
+
+    private void SetUpWillShowGameHistoryWhenRequested()
+    {
+        var menuChoiceReaderMock = new Mock<IMenuChoiceReader>();
+        var sequence = new MockSequence();
+
+        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Addition);
+        menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.History);
         menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Quit);
         _menuChoiceReader = menuChoiceReaderMock.Object;
 

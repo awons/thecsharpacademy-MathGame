@@ -11,7 +11,8 @@ public class GameLoop(
     IAnswerReader answerReader,
     IDifficultyLevelReader difficultyLevelReader,
     IMenuChoiceReader menuChoiceReader,
-    GameResultRenderer gameResultRenderer
+    GameResultRenderer gameResultRenderer,
+    HistoryRenderer historyRenderer
 )
 {
     public void Run()
@@ -28,7 +29,7 @@ public class GameLoop(
 
             if (menuChoice == MenuChoiceEnum.History)
             {
-                HistoryRenderer.Render(gameHistory);
+                historyRenderer.Render(gameHistory);
                 continue;
             }
 
