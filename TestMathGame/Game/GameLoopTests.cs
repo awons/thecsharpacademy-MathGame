@@ -1,4 +1,3 @@
-using System.Data;
 using System.Text;
 using FluentAssertions;
 using MathGame.Game;
