@@ -1,10 +1,12 @@
+using MathGame.ConsoleWrapper;
+
 namespace MathGame.UI;
 
-public class ConsoleKeyAwaiter : IKeyAwaiter
+public class ConsoleKeyAwaiter(IConsoleWrapper consoleWrapper) : IKeyAwaiter
 {
     public void Wait()
     {
         Console.WriteLine("Press any key to continue...");
-        Console.ReadKey();
+        consoleWrapper.ReadKey(false);
     }
 }

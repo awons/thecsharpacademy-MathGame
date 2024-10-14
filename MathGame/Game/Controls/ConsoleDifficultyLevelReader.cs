@@ -1,6 +1,8 @@
+using MathGame.ConsoleWrapper;
+
 namespace MathGame.Game.Controls;
 
-public class ConsoleDifficultyLevelReader : IDifficultyLevelReader
+public class ConsoleDifficultyLevelReader(IConsoleWrapper consoleWrapper) : IDifficultyLevelReader
 {
     public DifficultyLevelEnum GetChoice()
     {
@@ -12,7 +14,7 @@ public class ConsoleDifficultyLevelReader : IDifficultyLevelReader
             Console.SetCursorPosition(currentPositionLeft, currentPositionTop);
             Console.Write(' ');
             Console.SetCursorPosition(currentPositionLeft, currentPositionTop);
-            choice = (int)char.GetNumericValue(Console.ReadKey().KeyChar);
+            choice = (int)char.GetNumericValue(consoleWrapper.ReadKey(false).KeyChar);
         } while (!Enum.IsDefined(typeof(DifficultyLevelEnum), choice));
 
         return (DifficultyLevelEnum)choice;

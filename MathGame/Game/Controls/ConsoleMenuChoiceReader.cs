@@ -1,8 +1,9 @@
+using MathGame.ConsoleWrapper;
 using MathGame.UI.Menu;
 
 namespace MathGame.Game.Controls;
 
-public class ConsoleMenuChoiceReader : IMenuChoiceReader
+public class ConsoleMenuChoiceReader(IConsoleWrapper consoleWrapper) : IMenuChoiceReader
 {
     public MenuChoiceEnum GetChoice()
     {
@@ -11,7 +12,7 @@ public class ConsoleMenuChoiceReader : IMenuChoiceReader
         var currentPositionTop = Console.CursorTop;
         do
         {
-            choice = Console.IsInputRedirected ? Convert.ToChar(Console.ReadLine()) : Console.ReadKey().KeyChar;
+            choice = consoleWrapper.ReadKey(false).KeyChar;
             Console.SetCursorPosition(currentPositionLeft, currentPositionTop);
             Console.Write(' ');
             Console.SetCursorPosition(currentPositionLeft, currentPositionTop);

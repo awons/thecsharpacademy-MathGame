@@ -1,4 +1,5 @@
-﻿using MathGame.Game;
+﻿using MathGame.ConsoleWrapper;
+using MathGame.Game;
 using MathGame.Game.Controls;
 using MathGame.Game.Randomizers;
 using MathGame.Operations;
@@ -12,6 +13,7 @@ var host = Host.CreateDefaultBuilder()
     .ConfigureServices(services =>
     {
         var random = new Random();
+        services.AddSingleton<IConsoleWrapper, ConsoleWrapper>();
         services.AddSingleton<OperationFactory>();
         services.AddSingleton<AdditionRandomizer>(_ => new AdditionRandomizer(random));
         services.AddSingleton<SubtractionRandomizer>(_ => new SubtractionRandomizer(random));
