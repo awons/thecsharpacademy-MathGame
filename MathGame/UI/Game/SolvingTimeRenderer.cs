@@ -7,7 +7,12 @@ public static class SolvingTimeRenderer
     public static void RenderSolvingTime(GameResult gameResult)
     {
         Console.Write("It took you ");
-        if (gameResult.TimeToSolve.Hours > 0)
+        if (gameResult.TimeToSolve.Days > 0)
+        {
+            Console.Write(
+                $"{gameResult.TimeToSolve.Days}d {gameResult.TimeToSolve.Hours}h {gameResult.TimeToSolve.Minutes}m {gameResult.TimeToSolve.Seconds}s");
+        }
+        else if (gameResult.TimeToSolve.Hours > 0)
         {
             Console.Write(
                 $"{gameResult.TimeToSolve.Hours}h {gameResult.TimeToSolve.Minutes}m {gameResult.TimeToSolve.Seconds}s");
