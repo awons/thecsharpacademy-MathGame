@@ -8,5 +8,5 @@ public enum MenuChoiceEnum
     Division = 'd',
     Random = 'r',
     History = 'h',
-    Quit = 'q',
+    Quit = 'q'
 }

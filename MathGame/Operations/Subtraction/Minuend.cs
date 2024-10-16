@@ -2,8 +2,8 @@ namespace MathGame.Operations.Subtraction;
 
 public record Minuend(int Value)
 {
-    public static Minuend Next(Random random, int maxValue)
+    public static Minuend Next(int maxValue)
     {
-        return new Minuend(random.Next(1, maxValue));
+        return new Minuend(Random.Shared.Next(1, maxValue));
     }
 }

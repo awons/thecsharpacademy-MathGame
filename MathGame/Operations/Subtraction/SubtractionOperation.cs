@@ -2,9 +2,15 @@ namespace MathGame.Operations.Subtraction;
 
 public record SubtractionOperation(Minuend Minuend, Subtrahend Subtrahend) : IOperation
 {
-    public int ExpectedResult() => Minuend.Value - Subtrahend.Value;
+    public int ExpectedResult()
+    {
+        return Minuend.Value - Subtrahend.Value;
+    }
 
-    public OperationsEnum GetOperationType() => OperationsEnum.Subtraction;
+    public OperationsEnum GetOperationType()
+    {
+        return OperationsEnum.Subtraction;
+    }
 
     public int GetLeftOperand()
     {

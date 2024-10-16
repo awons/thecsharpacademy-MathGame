@@ -7,20 +7,16 @@ using MathGame.Operations.Subtraction;
 
 namespace MathGame.Operations;
 
-public class OperationFactory(
-    AdditionRandomizer additionRandomizer,
-    SubtractionRandomizer subtractionRandomizer,
-    MultiplicationRandomizer multiplicationRandomizer,
-    DivisionRandomizer divisionRandomizer)
+public static class OperationFactory
 {
-    public IOperation Create(OperationsEnum operationType, DifficultyLevelEnum difficultyLevel)
+    public static IOperation Create(OperationsEnum operationType, DifficultyLevelEnum difficultyLevel)
     {
         return operationType switch
         {
-            OperationsEnum.Addition => additionRandomizer.Next(difficultyLevel),
-            OperationsEnum.Subtraction => subtractionRandomizer.Next(difficultyLevel),
-            OperationsEnum.Multiplication => multiplicationRandomizer.Next(difficultyLevel),
-            OperationsEnum.Division => divisionRandomizer.Next(difficultyLevel),
+            OperationsEnum.Addition => AdditionRandomizer.Next(difficultyLevel),
+            OperationsEnum.Subtraction => SubtractionRandomizer.Next(difficultyLevel),
+            OperationsEnum.Multiplication => MultiplicationRandomizer.Next(difficultyLevel),
+            OperationsEnum.Division => DivisionRandomizer.Next(difficultyLevel),
             _ => throw new ArgumentOutOfRangeException(nameof(operationType), operationType, null)
         };
     }

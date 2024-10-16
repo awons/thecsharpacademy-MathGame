@@ -2,13 +2,13 @@ using MathGame.Operations.Multiplication;
 
 namespace MathGame.Game.Randomizers;
 
-public class MultiplicationRandomizer(Random random)
+public static class MultiplicationRandomizer
 {
-    public MultiplicationOperation Next(DifficultyLevelEnum difficultyLevel)
+    public static MultiplicationOperation Next(DifficultyLevelEnum difficultyLevel)
     {
         return new MultiplicationOperation(
-            Multiplier.Next(random, GetMinValue(difficultyLevel), GetMaxValue(difficultyLevel)),
-            Multiplicand.Next(random, GetMinValue(difficultyLevel), GetMaxValue(difficultyLevel)));
+            Multiplier.Next(GetMinValue(difficultyLevel), GetMaxValue(difficultyLevel)),
+            Multiplicand.Next(GetMinValue(difficultyLevel), GetMaxValue(difficultyLevel)));
     }
 
     private static int GetMinValue(DifficultyLevelEnum difficultyLevel)

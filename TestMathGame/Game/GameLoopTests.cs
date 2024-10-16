@@ -2,8 +2,6 @@ using System.Text;
 using FluentAssertions;
 using MathGame.Game;
 using MathGame.Game.Controls;
-using MathGame.Game.Randomizers;
-using MathGame.Operations;
 using MathGame.UI;
 using MathGame.UI.Game;
 using MathGame.UI.Menu;
@@ -14,12 +12,11 @@ namespace TestMathGame.Game;
 public class GameLoopTests
 {
     private StringBuilder _consoleOutput;
-    private OperationFactory _operationFactory;
     private Menu _menu;
-    private IAnswerReader _answerReader;
-    private IDifficultyLevelReader _difficultyLevelReader;
-    private IMenuChoiceReader _menuChoiceReader;
-    private IKeyAwaiter _keyAwaiter;
+    private IAnswerReader? _answerReader;
+    private IDifficultyLevelReader? _difficultyLevelReader;
+    private IMenuChoiceReader? _menuChoiceReader;
+    private IKeyAwaiter? _keyAwaiter;
 
     [SetUp]
     public void Setup()
@@ -27,9 +24,6 @@ public class GameLoopTests
         _consoleOutput = new StringBuilder();
         Console.SetOut(new StringWriter(_consoleOutput));
 
-        var random = new Random();
-        _operationFactory = new OperationFactory(new AdditionRandomizer(random), new SubtractionRandomizer(random),
-            new MultiplicationRandomizer(random), new DivisionRandomizer(random));
         _menu = new Menu();
     }
 
@@ -104,8 +98,8 @@ public class GameLoopTests
 
     private void RunGameLoop()
     {
-        var loop = new GameLoop(_operationFactory, _menu, _answerReader, _difficultyLevelReader,
-            _menuChoiceReader, new GameResultRenderer(_keyAwaiter), new HistoryRenderer(_keyAwaiter));
+        var loop = new GameLoop(_menu, _answerReader!, _difficultyLevelReader!,
+            _menuChoiceReader!, new GameResultRenderer(_keyAwaiter!), new HistoryRenderer(_keyAwaiter!));
         loop.Run();
     }
 

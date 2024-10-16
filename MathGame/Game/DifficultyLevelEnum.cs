@@ -6,5 +6,5 @@ public enum DifficultyLevelEnum
     Level2 = 2,
     Level3 = 3,
     Level4 = 4,
-    Level5 = 5,
+    Level5 = 5
 }

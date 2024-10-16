@@ -8,23 +8,15 @@ public static class SolvingTimeRenderer
     {
         Console.Write("It took you ");
         if (gameResult.TimeToSolve.Days > 0)
-        {
             Console.Write(
                 $"{gameResult.TimeToSolve.Days}d {gameResult.TimeToSolve.Hours}h {gameResult.TimeToSolve.Minutes}m {gameResult.TimeToSolve.Seconds}s");
-        }
         else if (gameResult.TimeToSolve.Hours > 0)
-        {
             Console.Write(
                 $"{gameResult.TimeToSolve.Hours}h {gameResult.TimeToSolve.Minutes}m {gameResult.TimeToSolve.Seconds}s");
-        }
         else if (gameResult.TimeToSolve.Minutes > 0)
-        {
             Console.Write($"{gameResult.TimeToSolve.Minutes}m {gameResult.TimeToSolve.Seconds}s");
-        }
         else
-        {
             Console.Write($"{gameResult.TimeToSolve.Seconds}s");
-        }
 
         Console.WriteLine(" to solve the problem");
     }

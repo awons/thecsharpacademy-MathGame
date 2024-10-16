@@ -5,5 +5,5 @@ public enum OperationsEnum
     Addition,
     Subtraction,
     Multiplication,
-    Division,
+    Division
 }

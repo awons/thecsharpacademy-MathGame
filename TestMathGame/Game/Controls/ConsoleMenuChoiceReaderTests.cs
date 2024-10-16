@@ -26,7 +26,7 @@ public class ConsoleMenuChoiceReaderTests
         (new ConsoleKeyInfo('m', ConsoleKey.None, false, false, false), MenuChoiceEnum.Multiplication),
         (new ConsoleKeyInfo('d', ConsoleKey.None, false, false, false), MenuChoiceEnum.Division),
         (new ConsoleKeyInfo('h', ConsoleKey.None, false, false, false), MenuChoiceEnum.History),
-        (new ConsoleKeyInfo('q', ConsoleKey.None, false, false, false), MenuChoiceEnum.Quit),
+        (new ConsoleKeyInfo('q', ConsoleKey.None, false, false, false), MenuChoiceEnum.Quit)
     ];
 
     [Test]

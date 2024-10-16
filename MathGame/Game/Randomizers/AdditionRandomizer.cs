@@ -2,12 +2,12 @@ using MathGame.Operations.Addition;
 
 namespace MathGame.Game.Randomizers;
 
-public class AdditionRandomizer(Random random)
+public static class AdditionRandomizer
 {
-    public AdditionOperation Next(DifficultyLevelEnum difficultyLevel)
+    public static AdditionOperation Next(DifficultyLevelEnum difficultyLevel)
     {
-        return new AdditionOperation(Augend.Next(random, GetMaxValue(difficultyLevel)),
-            Addend.Next(random, GetMaxValue(difficultyLevel)));
+        return new AdditionOperation(Augend.Next(GetMaxValue(difficultyLevel)),
+            Addend.Next(GetMaxValue(difficultyLevel)));
     }
 
     private static int GetMaxValue(DifficultyLevelEnum difficultyLevel)

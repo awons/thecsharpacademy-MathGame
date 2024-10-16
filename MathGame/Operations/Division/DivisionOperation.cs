@@ -2,9 +2,15 @@ namespace MathGame.Operations.Division;
 
 public record DivisionOperation(Divident Divident, Divisor Divisor) : IOperation
 {
-    public int ExpectedResult() => Divident.Value / Divisor.Value;
+    public int ExpectedResult()
+    {
+        return Divident.Value / Divisor.Value;
+    }
 
-    public OperationsEnum GetOperationType() => OperationsEnum.Division;
+    public OperationsEnum GetOperationType()
+    {
+        return OperationsEnum.Division;
+    }
 
     public int GetLeftOperand()
     {

@@ -2,8 +2,8 @@ namespace MathGame.Operations.Multiplication;
 
 public record Multiplier(int Value)
 {
-    public static Multiplier Next(Random random, int minValue, int maxValue)
+    public static Multiplier Next(int minValue, int maxValue)
     {
-        return new Multiplier(random.Next(minValue, maxValue));
+        return new Multiplier(Random.Shared.Next(minValue, maxValue));
     }
 }

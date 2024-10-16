@@ -2,9 +2,15 @@ namespace MathGame.Operations.Multiplication;
 
 public record MultiplicationOperation(Multiplier Multiplier, Multiplicand Multiplicand) : IOperation
 {
-    public int ExpectedResult() => Multiplier.Value * Multiplicand.Value;
+    public int ExpectedResult()
+    {
+        return Multiplier.Value * Multiplicand.Value;
+    }
 
-    public OperationsEnum GetOperationType() => OperationsEnum.Multiplication;
+    public OperationsEnum GetOperationType()
+    {
+        return OperationsEnum.Multiplication;
+    }
 
     public int GetLeftOperand()
     {

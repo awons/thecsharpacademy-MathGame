@@ -8,7 +8,7 @@ public class ConsoleAnswerReader : IAnswerReader
         var currentPositionLeft = Console.CursorLeft;
         do
         {
-            if (!int.TryParse(Console.ReadLine(), out int answer))
+            if (!int.TryParse(Console.ReadLine(), out var answer))
             {
                 Console.SetCursorPosition(currentPositionLeft, currentPositionTop);
                 Console.Write(new string(' ', Console.WindowWidth));

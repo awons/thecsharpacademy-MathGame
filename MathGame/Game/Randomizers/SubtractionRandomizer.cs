@@ -2,12 +2,12 @@ using MathGame.Operations.Subtraction;
 
 namespace MathGame.Game.Randomizers;
 
-public class SubtractionRandomizer(Random random)
+public static class SubtractionRandomizer
 {
-    public SubtractionOperation Next(DifficultyLevelEnum difficultyLevel)
+    public static SubtractionOperation Next(DifficultyLevelEnum difficultyLevel)
     {
-        return new SubtractionOperation(Minuend.Next(random, GetMaxValue(difficultyLevel)),
-            Subtrahend.Next(random, GetMaxValue(difficultyLevel)));
+        return new SubtractionOperation(Minuend.Next(GetMaxValue(difficultyLevel)),
+            Subtrahend.Next(GetMaxValue(difficultyLevel)));
     }
 
     private static int GetMaxValue(DifficultyLevelEnum difficultyLevel)

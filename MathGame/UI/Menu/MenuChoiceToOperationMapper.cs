@@ -20,8 +20,7 @@ public static class MenuChoiceToOperationMapper
 
     private static OperationsEnum GetRandomEnum()
     {
-        Array values = Enum.GetValues(typeof(OperationsEnum));
-        Random random = new Random();
-        return (OperationsEnum)values.GetValue(random.Next(values.Length));
+        var values = Enum.GetValues(typeof(OperationsEnum));
+        return (OperationsEnum)values.GetValue(Random.Shared.Next(values.Length));
     }
 }

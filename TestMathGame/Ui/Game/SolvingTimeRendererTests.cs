@@ -32,6 +32,6 @@ public class SolvingTimeRendererTests
         (new GameResult(new AdditionOperation(new Augend(1), new Addend(1)), 2, new TimeSpan(0, 3, 4)),
             "It took you 3m 4s to solve the problem"),
         (new GameResult(new AdditionOperation(new Augend(1), new Addend(1)), 2, new TimeSpan(0, 0, 4)),
-            "It took you 4s to solve the problem"),
+            "It took you 4s to solve the problem")
     ];
 }

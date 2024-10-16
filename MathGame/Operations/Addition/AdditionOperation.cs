@@ -2,9 +2,15 @@ namespace MathGame.Operations.Addition;
 
 public record AdditionOperation(Augend Augend, Addend Addend) : IOperation
 {
-    public int ExpectedResult() => Augend.Value + Addend.Value;
+    public int ExpectedResult()
+    {
+        return Augend.Value + Addend.Value;
+    }
 
-    public OperationsEnum GetOperationType() => OperationsEnum.Addition;
+    public OperationsEnum GetOperationType()
+    {
+        return OperationsEnum.Addition;
+    }
 
     public int GetLeftOperand()
     {

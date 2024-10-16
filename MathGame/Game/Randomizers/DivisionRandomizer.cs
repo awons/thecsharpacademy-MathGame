@@ -2,17 +2,17 @@ using MathGame.Operations.Division;
 
 namespace MathGame.Game.Randomizers;
 
-public class DivisionRandomizer(Random random)
+public static class DivisionRandomizer
 {
-    public DivisionOperation Next(DifficultyLevelEnum difficultyLevel)
+    public static DivisionOperation Next(DifficultyLevelEnum difficultyLevel)
     {
         Divident divident;
         Divisor divisor;
         do
         {
-            divident = Divident.Next(random, GetMinValue(difficultyLevel), GetMaxValue(difficultyLevel));
-            divisor = Divisor.Next(random, GetMinValue(difficultyLevel), GetMaxValue(difficultyLevel));
-        } while ((divident.Value % divisor.Value != 0) || divident.Value == divisor.Value);
+            divident = Divident.Next(GetMinValue(difficultyLevel), GetMaxValue(difficultyLevel));
+            divisor = Divisor.Next(GetMinValue(difficultyLevel), GetMaxValue(difficultyLevel));
+        } while (divident.Value % divisor.Value != 0 || divident.Value == divisor.Value);
 
         return new DivisionOperation(divident, divisor);
     }

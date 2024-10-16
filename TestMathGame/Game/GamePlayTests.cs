@@ -12,8 +12,7 @@ public class GamePlayTests
     [SetUp]
     public void SetUp()
     {
-        var random = new Random();
-        _operation = new AdditionOperation(Augend.Next(random, 100), Addend.Next(random, 100));
+        _operation = new AdditionOperation(Augend.Next(100), Addend.Next(100));
     }
 
     [Test]
