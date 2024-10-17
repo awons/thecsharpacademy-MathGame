@@ -1,19 +1,19 @@
 using MathGame.ConsoleWrapper;
 
-namespace MathGame.Game.Controls;
+namespace MathGame.Game.Controls.Console;
 
 public class ConsoleDifficultyLevelReader(IConsoleWrapper consoleWrapper) : IDifficultyLevelReader
 {
     public DifficultyLevelEnum GetChoice()
     {
         int choice;
-        var currentPositionLeft = Console.CursorLeft;
-        var currentPositionTop = Console.CursorTop;
+        var currentPositionLeft = System.Console.CursorLeft;
+        var currentPositionTop = System.Console.CursorTop;
         do
         {
-            Console.SetCursorPosition(currentPositionLeft, currentPositionTop);
-            Console.Write(' ');
-            Console.SetCursorPosition(currentPositionLeft, currentPositionTop);
+            System.Console.SetCursorPosition(currentPositionLeft, currentPositionTop);
+            System.Console.Write(' ');
+            System.Console.SetCursorPosition(currentPositionLeft, currentPositionTop);
             choice = (int)char.GetNumericValue(consoleWrapper.ReadKey(false).KeyChar);
         } while (!Enum.IsDefined(typeof(DifficultyLevelEnum), choice));
 

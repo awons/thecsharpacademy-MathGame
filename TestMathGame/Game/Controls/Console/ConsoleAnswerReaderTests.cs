@@ -1,8 +1,8 @@
 using FluentAssertions;
-using MathGame.Game.Controls;
+using MathGame.Game.Controls.Console;
 using Moq;
 
-namespace TestMathGame.Game.Controls;
+namespace TestMathGame.Game.Controls.Console;
 
 public class ConsoleAnswerReaderTests
 {
@@ -12,7 +12,7 @@ public class ConsoleAnswerReaderTests
     {
         var consoleInput = new Mock<TextReader>();
         consoleInput.Setup(x => x.ReadLine()).Returns("12");
-        Console.SetIn(consoleInput.Object);
+        System.Console.SetIn(consoleInput.Object);
 
         var reader = new ConsoleAnswerReader();
         var answer = reader.GetAnswer();
@@ -29,7 +29,7 @@ public class ConsoleAnswerReaderTests
         consoleInput.InSequence(sequence).Setup(x => x.ReadLine()).Returns("ab");
         consoleInput.InSequence(sequence).Setup(x => x.ReadLine()).Returns("bc");
         consoleInput.InSequence(sequence).Setup(x => x.ReadLine()).Returns("123");
-        Console.SetIn(consoleInput.Object);
+        System.Console.SetIn(consoleInput.Object);
 
         var reader = new ConsoleAnswerReader();
         var answer = reader.GetAnswer();

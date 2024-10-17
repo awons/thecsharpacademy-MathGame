@@ -1,10 +1,10 @@
 using FluentAssertions;
 using MathGame.ConsoleWrapper;
 using MathGame.Game;
-using MathGame.Game.Controls;
+using MathGame.Game.Controls.Console;
 using Moq;
 
-namespace TestMathGame.Game.Controls;
+namespace TestMathGame.Game.Controls.Console;
 
 public class ConsoleDifficultyLevelReaderTests
 {

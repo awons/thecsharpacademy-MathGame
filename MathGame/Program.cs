@@ -1,6 +1,7 @@
 ﻿using MathGame.ConsoleWrapper;
 using MathGame.Game;
 using MathGame.Game.Controls;
+using MathGame.Game.Controls.Console;
 using MathGame.UI;
 using MathGame.UI.Game;
 using MathGame.UI.Menu;
