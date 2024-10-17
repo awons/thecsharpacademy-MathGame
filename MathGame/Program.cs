@@ -16,20 +16,17 @@ builder.Build();
 var host = Host.CreateDefaultBuilder()
     .ConfigureServices(services =>
     {
+        services.AddAnswerReaderFactory();
         services.AddSingleton<IConsoleWrapper, ConsoleWrapper>();
-        services.AddSingleton<Menu>();
-        services.AddSingleton<IAnswerReader, ConsoleAnswerReader>();
         services.AddSingleton<IDifficultyLevelReader, ConsoleDifficultyLevelReader>();
         services.AddSingleton<IMenuChoiceReader, ConsoleMenuChoiceReader>();
         services.AddSingleton<IKeyAwaiter, ConsoleKeyAwaiter>();
-        services.AddSingleton<GameResultRenderer>();
-        services.AddSingleton<HistoryRenderer>();
-        services.AddTransient<GameLoop>();
+        services.AddTransient<GameLoopFactory>();
     })
     .Build();
 
-var loop = ActivatorUtilities.CreateInstance<GameLoop>(host.Services);
-loop.Run();
+var loopFactory = ActivatorUtilities.CreateInstance<GameLoopFactory>(host.Services);
+loopFactory.Create(ControlsChoiceEnum.Console).Run();
 
 static void BuildConfig(IConfigurationBuilder builder)
 {
