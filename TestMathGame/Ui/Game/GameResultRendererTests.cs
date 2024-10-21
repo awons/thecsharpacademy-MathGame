@@ -4,7 +4,7 @@ using MathGame.Game;
 using MathGame.Operations.Addition;
 using MathGame.UI;
 using MathGame.UI.Game;
-using Moq;
+using NSubstitute;
 
 namespace TestMathGame.Ui.Game;
 
@@ -20,9 +20,9 @@ public class GameResultRendererTests
         var consoleOutputWriter = new StringWriter(_consoleOutput);
         Console.SetOut(consoleOutputWriter);
 
-        var keyAwaiterMock = new Mock<IKeyAwaiter>();
-        keyAwaiterMock.Setup(k => k.Wait());
-        _keyAwaiter = keyAwaiterMock.Object;
+        _keyAwaiter = Substitute.For<IKeyAwaiter>();
+        _keyAwaiter.When(x => x.Wait())
+            .Do(x => { });
     }
 
     [Test]

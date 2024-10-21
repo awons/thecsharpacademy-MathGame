@@ -2,7 +2,7 @@ using FluentAssertions;
 using MathGame.ConsoleWrapper;
 using MathGame.Game;
 using MathGame.Game.Controls.Console;
-using Moq;
+using NSubstitute;
 
 namespace TestMathGame.Game.Controls.Console;
 
@@ -13,9 +13,9 @@ public class ConsoleDifficultyLevelReaderTests
     public void WillReturnCorrectEnumBasedOnProvidedInput(
         (ConsoleKeyInfo input, DifficultyLevelEnum expectedResult) caseTuple)
     {
-        var consoleWrapper = new Mock<IConsoleWrapper>();
-        consoleWrapper.Setup(c => c.ReadKey(false)).Returns(caseTuple.input);
-        var reader = new ConsoleDifficultyLevelReader(consoleWrapper.Object);
+        var consoleWrapper = Substitute.For<IConsoleWrapper>();
+        consoleWrapper.ReadKey(false).Returns(caseTuple.input);
+        var reader = new ConsoleDifficultyLevelReader(consoleWrapper);
 
         reader.GetChoice().Should().Be(caseTuple.expectedResult);
     }
@@ -32,16 +32,13 @@ public class ConsoleDifficultyLevelReaderTests
     [Test]
     public void WillKeepAskingForChoiceIfIncorrectInputProvided()
     {
-        var consoleWrapper = new Mock<IConsoleWrapper>();
-        var sequence = new MockSequence();
-        consoleWrapper.InSequence(sequence).Setup(c => c.ReadKey(false))
-            .Returns(new ConsoleKeyInfo('a', ConsoleKey.None, false, false, false));
-        consoleWrapper.InSequence(sequence).Setup(c => c.ReadKey(false))
-            .Returns(new ConsoleKeyInfo('b', ConsoleKey.None, false, false, false));
-        consoleWrapper.InSequence(sequence).Setup(c => c.ReadKey(false))
-            .Returns(new ConsoleKeyInfo('1', ConsoleKey.None, false, false, false));
+        var consoleWrapper = Substitute.For<IConsoleWrapper>();
+        consoleWrapper.ReadKey(false).Returns(
+            new ConsoleKeyInfo('a', ConsoleKey.None, false, false, false),
+            new ConsoleKeyInfo('b', ConsoleKey.None, false, false, false),
+            new ConsoleKeyInfo('1', ConsoleKey.None, false, false, false));
 
-        var reader = new ConsoleDifficultyLevelReader(consoleWrapper.Object);
+        var reader = new ConsoleDifficultyLevelReader(consoleWrapper);
 
         reader.GetChoice().Should().Be(DifficultyLevelEnum.Level1);
     }

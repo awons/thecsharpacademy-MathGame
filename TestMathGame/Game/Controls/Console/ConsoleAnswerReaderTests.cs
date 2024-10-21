@@ -1,6 +1,6 @@
 using FluentAssertions;
 using MathGame.Game.Controls.Console;
-using Moq;
+using NSubstitute;
 
 namespace TestMathGame.Game.Controls.Console;
 
@@ -10,9 +10,9 @@ public class ConsoleAnswerReaderTests
     [CancelAfter(1000)]
     public void WillGetAnswerIfProvidedWithInteger()
     {
-        var consoleInput = new Mock<TextReader>();
-        consoleInput.Setup(x => x.ReadLine()).Returns("12");
-        System.Console.SetIn(consoleInput.Object);
+        var consoleInput = Substitute.For<TextReader>();
+        consoleInput.ReadLine().Returns("12");
+        System.Console.SetIn(consoleInput);
 
         var reader = new ConsoleAnswerReader();
         var answer = reader.GetAnswer();
@@ -24,12 +24,10 @@ public class ConsoleAnswerReaderTests
     [CancelAfter(1000)]
     public void WillKeepOnAskingIfAnswerIsNotAnInteger()
     {
-        var consoleInput = new Mock<TextReader>();
-        var sequence = new MockSequence();
-        consoleInput.InSequence(sequence).Setup(x => x.ReadLine()).Returns("ab");
-        consoleInput.InSequence(sequence).Setup(x => x.ReadLine()).Returns("bc");
-        consoleInput.InSequence(sequence).Setup(x => x.ReadLine()).Returns("123");
-        System.Console.SetIn(consoleInput.Object);
+        var consoleInput = Substitute.For<TextReader>();
+        consoleInput.ReadLine().Returns("ab", "bc", "123");
+        ;
+        System.Console.SetIn(consoleInput);
 
         var reader = new ConsoleAnswerReader();
         var answer = reader.GetAnswer();

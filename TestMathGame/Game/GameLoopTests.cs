@@ -5,7 +5,7 @@ using MathGame.Game.Controls;
 using MathGame.UI;
 using MathGame.UI.Game;
 using MathGame.UI.Menu;
-using Moq;
+using NSubstitute;
 
 namespace TestMathGame.Game;
 
@@ -105,16 +105,14 @@ public class GameLoopTests
 
     private void SetUpWillShowMainMenuWhenStarted()
     {
-        var mock = new Mock<IMenuChoiceReader>();
-        mock.Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Quit);
-        _menuChoiceReader = mock.Object;
+        _menuChoiceReader = Substitute.For<IMenuChoiceReader>();
+        _menuChoiceReader.GetChoice().Returns(MenuChoiceEnum.Quit);
     }
 
     private void SetUpWillQuitTheGameIfQuitMenuItemChosen()
     {
-        var mock = new Mock<IMenuChoiceReader>();
-        mock.Setup(reader => reader.GetChoice()).Returns(MenuChoiceEnum.Quit);
-        _menuChoiceReader = mock.Object;
+        _menuChoiceReader = Substitute.For<IMenuChoiceReader>();
+        _menuChoiceReader.GetChoice().Returns(MenuChoiceEnum.Quit);
     }
 
     private void SetUpWillLetUserChooseDifficultyLevel()
@@ -139,23 +137,17 @@ public class GameLoopTests
 
     private void SetUpGamePlay(List<MenuChoiceEnum> choices)
     {
-        var menuChoiceReaderMock = new Mock<IMenuChoiceReader>();
-        var sequence = new MockSequence();
+        _menuChoiceReader = Substitute.For<IMenuChoiceReader>();
+        _menuChoiceReader.GetChoice().Returns(choices.First(), choices.Skip(1).ToArray());
 
-        foreach (var choice in choices)
-            menuChoiceReaderMock.InSequence(sequence).Setup(reader => reader.GetChoice()).Returns(choice);
-        _menuChoiceReader = menuChoiceReaderMock.Object;
+        _difficultyLevelReader = Substitute.For<IDifficultyLevelReader>();
+        _difficultyLevelReader.GetChoice().Returns(DifficultyLevelEnum.Level1);
 
-        var difficultyLevelReaderMock = new Mock<IDifficultyLevelReader>();
-        difficultyLevelReaderMock.Setup(reader => reader.GetChoice()).Returns(DifficultyLevelEnum.Level1);
-        _difficultyLevelReader = difficultyLevelReaderMock.Object;
+        _answerReader = Substitute.For<IAnswerReader>();
+        _answerReader.GetAnswer().Returns(0);
 
-        var answerReaderMock = new Mock<IAnswerReader>();
-        answerReaderMock.Setup(reader => reader.GetAnswer()).Returns(0);
-        _answerReader = answerReaderMock.Object;
-
-        var keyAwaiterMock = new Mock<IKeyAwaiter>();
-        keyAwaiterMock.Setup(awaiter => awaiter.Wait());
-        _keyAwaiter = keyAwaiterMock.Object;
+        _keyAwaiter = Substitute.For<IKeyAwaiter>();
+        _keyAwaiter.When(x => x.Wait())
+            .Do(x => { });
     }
 }

@@ -2,7 +2,7 @@ using FluentAssertions;
 using MathGame.ConsoleWrapper;
 using MathGame.Game.Controls;
 using MathGame.Game.Controls.Console;
-using Moq;
+using NSubstitute;
 
 namespace TestMathGame.Game.Controls.Console;
 
@@ -13,9 +13,9 @@ public class ConsoleMenuChoiceReaderTests
     public void WillReturnCorrectEnumBasedOnProvidedInput(
         (ConsoleKeyInfo input, MenuChoiceEnum expectedChoice) caseTuple)
     {
-        var consoleWrapper = new Mock<IConsoleWrapper>();
-        consoleWrapper.Setup(c => c.ReadKey(false)).Returns(caseTuple.input);
-        var reader = new ConsoleMenuChoiceReader(consoleWrapper.Object);
+        var consoleWrapper = Substitute.For<IConsoleWrapper>();
+        consoleWrapper.ReadKey(false).Returns(caseTuple.input);
+        var reader = new ConsoleMenuChoiceReader(consoleWrapper);
 
         reader.GetChoice().Should().Be(caseTuple.expectedChoice);
     }
@@ -33,16 +33,13 @@ public class ConsoleMenuChoiceReaderTests
     [Test]
     public void WillKeepAskingForChoiceIfIncorrectInputProvided()
     {
-        var consoleWrapper = new Mock<IConsoleWrapper>();
-        var sequence = new MockSequence();
-        consoleWrapper.InSequence(sequence).Setup(c => c.ReadKey(false))
-            .Returns(new ConsoleKeyInfo('b', ConsoleKey.None, false, false, false));
-        consoleWrapper.InSequence(sequence).Setup(c => c.ReadKey(false))
-            .Returns(new ConsoleKeyInfo('1', ConsoleKey.None, false, false, false));
-        consoleWrapper.InSequence(sequence).Setup(c => c.ReadKey(false))
-            .Returns(new ConsoleKeyInfo('q', ConsoleKey.None, false, false, false));
+        var consoleWrapper = Substitute.For<IConsoleWrapper>();
+        consoleWrapper.ReadKey(false).Returns(
+            new ConsoleKeyInfo('b', ConsoleKey.None, false, false, false),
+            new ConsoleKeyInfo('1', ConsoleKey.None, false, false, false),
+            new ConsoleKeyInfo('q', ConsoleKey.None, false, false, false));
 
-        var reader = new ConsoleMenuChoiceReader(consoleWrapper.Object);
+        var reader = new ConsoleMenuChoiceReader(consoleWrapper);
 
         reader.GetChoice().Should().Be(MenuChoiceEnum.Quit);
     }

@@ -4,7 +4,7 @@ using MathGame.Game;
 using MathGame.Operations.Addition;
 using MathGame.UI;
 using MathGame.UI.Game;
-using Moq;
+using NSubstitute;
 
 namespace TestMathGame.Ui.Game;
 
@@ -17,8 +17,9 @@ public class HistoryRendererTests
         var consoleOutputWriter = new StringWriter(consoleOutput);
         Console.SetOut(consoleOutputWriter);
 
-        var keyAwaiterMock = new Mock<IKeyAwaiter>();
-        keyAwaiterMock.Setup(k => k.Wait());
+        var keyAwaiter = Substitute.For<IKeyAwaiter>();
+        keyAwaiter.When(x => x.Wait())
+            .Do(x => { });
 
         GameHistory history =
         [
@@ -26,7 +27,7 @@ public class HistoryRendererTests
             new GameResult(new AdditionOperation(new Augend(3), new Addend(4)), 6, TimeSpan.Zero)
         ];
 
-        var renderer = new HistoryRenderer(keyAwaiterMock.Object);
+        var renderer = new HistoryRenderer(keyAwaiter);
         renderer.Render(history);
 
         var output = consoleOutput.ToString().Split(Environment.NewLine);
