@@ -25,7 +25,7 @@ var host = Host.CreateDefaultBuilder()
     .Build();
 
 var loopFactory = ActivatorUtilities.CreateInstance<GameLoopFactory>(host.Services);
-loopFactory.Create(ControlsChoiceEnum.Speech).Run();
+loopFactory.Create(ControlsChoiceEnum.Console).Run();
 
 static void BuildConfig(IConfigurationBuilder builder)
 {
