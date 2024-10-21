@@ -1,4 +1,4 @@
-name: The C# Academy - Math Game
+name: Build and test
 
 on: [push]
 
