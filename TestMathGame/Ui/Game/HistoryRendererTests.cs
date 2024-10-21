@@ -35,10 +35,10 @@ public class HistoryRendererTests
         output[0].Should().Be("Your previous games:");
         output[1].Should().Be("2 + 3 = 5 [correct answer: 5] Won");
         output[2].Should().Be("It took you 0s to solve the problem");
-        output[3].Should().Be("");
+        output[3].Should().Be(new string('-', Console.WindowWidth));
         output[4].Should().Be("3 + 4 = 6 [correct answer: 7] Lost");
         output[5].Should().Be("It took you 0s to solve the problem");
-        output[6].Should().Be("");
+        output[6].Should().Be(new string('-', Console.WindowWidth));
         output[7].Should().Be("");
     }
 }

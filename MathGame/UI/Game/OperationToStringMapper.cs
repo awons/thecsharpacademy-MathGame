@@ -11,7 +11,8 @@ public static class OperationToStringMapper
             OperationsEnum.Addition => "+",
             OperationsEnum.Subtraction => "-",
             OperationsEnum.Division => "/",
-            OperationsEnum.Multiplication => "*"
+            OperationsEnum.Multiplication => "*",
+            _ => throw new NotImplementedException()
         };
     }
 }
