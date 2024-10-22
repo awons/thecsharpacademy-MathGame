@@ -3,15 +3,14 @@ using MathGame.Game.Controls.Speech;
 
 namespace MathGame.Game.Controls;
 
-public class AnswerReaderFactory(Func<IEnumerable<IAnswerReader>> factory)
+public class AnswerReaderFactory(SpeechRecognizerFactory speechRecognizerFactory)
 {
     public IAnswerReader Create(ControlsChoiceEnum choice)
     {
-        var set = factory();
         return choice switch
         {
-            ControlsChoiceEnum.Console => set.Where(x => x is ConsoleAnswerReader).First(),
-            ControlsChoiceEnum.Speech => set.Where(x => x is SpeechAnswerReader).First(),
+            ControlsChoiceEnum.Console => new ConsoleAnswerReader(),
+            ControlsChoiceEnum.Speech => new SpeechAnswerReader(speechRecognizerFactory.Create()),
             _ => throw new NotImplementedException()
         };
     }

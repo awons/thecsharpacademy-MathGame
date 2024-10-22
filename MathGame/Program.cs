@@ -14,12 +14,12 @@ configurationBuilder.Build();
 var host = Host.CreateDefaultBuilder()
     .ConfigureServices((context, services) =>
     {
-        services.AddAnswerReaderFactory();
         services.AddSingleton<IConsoleWrapper, ConsoleWrapper>();
         services.AddSingleton<IKeyAwaiter, ConsoleKeyAwaiter>();
         services.Configure<SpeechRecognizerFactoryOptions>(
             context.Configuration.GetSection(SpeechRecognizerFactoryOptions.SpeechRecognizer));
         services.AddSingleton<SpeechRecognizerFactory>();
+        services.AddSingleton<AnswerReaderFactory>();
         services.AddTransient<GameLoopFactory>();
     })
     .Build();
