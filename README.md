@@ -30,3 +30,9 @@ dotnet restore
 dotnet build
 dotnet run --project MathGame
 ```
+
+## Running tests
+
+```bash
+dotnet test
+```
