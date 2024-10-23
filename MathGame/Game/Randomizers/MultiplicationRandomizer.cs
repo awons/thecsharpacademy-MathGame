@@ -28,11 +28,11 @@ public static class MultiplicationRandomizer
     {
         return difficultyLevel switch
         {
-            DifficultyLevelEnum.Level1 => 5,
-            DifficultyLevelEnum.Level2 => 10,
-            DifficultyLevelEnum.Level3 => 15,
-            DifficultyLevelEnum.Level4 => 20,
-            DifficultyLevelEnum.Level5 => 25,
+            DifficultyLevelEnum.Level1 => 6,
+            DifficultyLevelEnum.Level2 => 11,
+            DifficultyLevelEnum.Level3 => 16,
+            DifficultyLevelEnum.Level4 => 21,
+            DifficultyLevelEnum.Level5 => 26,
             _ => throw new ArgumentOutOfRangeException(nameof(difficultyLevel), difficultyLevel, null)
         };
     }

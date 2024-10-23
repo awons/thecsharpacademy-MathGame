@@ -34,11 +34,11 @@ public static class DivisionRandomizer
     {
         return difficultyLevel switch
         {
-            DifficultyLevelEnum.Level1 => 100,
-            DifficultyLevelEnum.Level2 => 150,
-            DifficultyLevelEnum.Level3 => 200,
-            DifficultyLevelEnum.Level4 => 250,
-            DifficultyLevelEnum.Level5 => 300,
+            DifficultyLevelEnum.Level1 => 101,
+            DifficultyLevelEnum.Level2 => 151,
+            DifficultyLevelEnum.Level3 => 201,
+            DifficultyLevelEnum.Level4 => 251,
+            DifficultyLevelEnum.Level5 => 301,
             _ => throw new ArgumentOutOfRangeException(nameof(difficultyLevel), difficultyLevel, null)
         };
     }
