@@ -36,3 +36,20 @@ dotnet run --project MathGame
 ```bash
 dotnet test
 ```
+
+## Changing controls
+
+By default, the game is controlled using keyboard. To switch to speech recognition set the environment variable `ControlsConfiguration:Controls` to `Speech` and configure credentials for the Azure Speech Recognition service. 
+
+## Configuring Azure SDK for Speech Recognizer
+
+Add your subscription details into user secrets like this:
+
+```json
+{
+  "SpeechRecognizer": {
+    "Region": "",
+    "SubscriptionKey": ""
+  }
+}
+```
