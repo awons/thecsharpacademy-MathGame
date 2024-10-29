@@ -21,7 +21,7 @@ public class SpeechAnswerReader(SpeechRecognizer recognizer) : IAnswerReader
                 continue;
             }
 
-            if (!int.TryParse(result.Text, out var answer))
+            if (!int.TryParse(result.Text.Substring(0, result.Text.Length - 1), out var answer))
             {
                 System.Console.WriteLine($"Answer must be an integer but got [{result.Text}]");
                 continue;
