@@ -31,7 +31,7 @@ public class GameLoopTests
     [CancelAfter(1000)]
     public void WillShowMainMenuWhenStarted()
     {
-        SetUpWillShowMainMenuWhenStarted();
+        SetUpWillQuitTheGameIfQuitMenuItemChosenOrUpWillShowMainMenuWhenStarted();
 
         RunGameLoop();
 
@@ -43,7 +43,7 @@ public class GameLoopTests
     [CancelAfter(1000)]
     public void WillQuitTheGameIfQuitMenuItemChosen()
     {
-        SetUpWillQuitTheGameIfQuitMenuItemChosen();
+        SetUpWillQuitTheGameIfQuitMenuItemChosenOrUpWillShowMainMenuWhenStarted();
 
         RunGameLoop();
 
@@ -103,13 +103,7 @@ public class GameLoopTests
         loop.Run();
     }
 
-    private void SetUpWillShowMainMenuWhenStarted()
-    {
-        _menuChoiceReader = Substitute.For<IMenuChoiceReader>();
-        _menuChoiceReader.GetChoice().Returns(MenuChoiceEnum.Quit);
-    }
-
-    private void SetUpWillQuitTheGameIfQuitMenuItemChosen()
+    private void SetUpWillQuitTheGameIfQuitMenuItemChosenOrUpWillShowMainMenuWhenStarted()
     {
         _menuChoiceReader = Substitute.For<IMenuChoiceReader>();
         _menuChoiceReader.GetChoice().Returns(MenuChoiceEnum.Quit);
