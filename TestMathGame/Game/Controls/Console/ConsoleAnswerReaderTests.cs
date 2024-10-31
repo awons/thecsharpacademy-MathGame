@@ -26,7 +26,6 @@ public class ConsoleAnswerReaderTests
     {
         var consoleInput = Substitute.For<TextReader>();
         consoleInput.ReadLine().Returns("ab", "bc", "123");
-        ;
         System.Console.SetIn(consoleInput);
 
         var reader = new ConsoleAnswerReader();
